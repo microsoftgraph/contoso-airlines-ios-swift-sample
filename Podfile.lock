@@ -1,0 +1,31 @@
+PODS:
+  - MSAL (0.2.3):
+    - MSAL/app-lib (= 0.2.3)
+  - MSAL/app-lib (0.2.3)
+  - MSGraphClientSDK (0.1.3):
+    - MSGraphClientSDK/Authentication (= 0.1.3)
+    - MSGraphClientSDK/Common (= 0.1.3)
+  - MSGraphClientSDK/Authentication (0.1.3)
+  - MSGraphClientSDK/Common (0.1.3):
+    - MSGraphClientSDK/Authentication
+  - ProjectRomeSdk (1.1.0)
+
+DEPENDENCIES:
+  - MSAL
+  - MSGraphClientSDK
+  - ProjectRomeSdk
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MSAL
+    - MSGraphClientSDK
+    - ProjectRomeSdk
+
+SPEC CHECKSUMS:
+  MSAL: 2592b744b9215d9b7463f02fb9afd4e432c75c62
+  MSGraphClientSDK: dad4c1a3d7a6f1150d3dfadf3956f947c324f9b0
+  ProjectRomeSdk: 64bc8cd16e7d75bba696734f74f8e6e2d5b6374f
+
+PODFILE CHECKSUM: 9faad71baf5deabbbfa4794022097bfa62e88377
+
+COCOAPODS: 1.6.1
