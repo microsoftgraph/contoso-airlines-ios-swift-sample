@@ -174,6 +174,7 @@
                                     <constraint firstItem="61I-yc-Hne" firstAttribute="top" secondItem="zxE-xn-YVv" secondAttribute="bottom" constant="42" id="HFE-yY-sDd"/>
                                     <constraint firstItem="zxE-xn-YVv" firstAttribute="centerX" secondItem="61I-yc-Hne" secondAttribute="centerX" id="K9N-X8-xlz"/>
                                     <constraint firstItem="61I-yc-Hne" firstAttribute="top" secondItem="ecp-60-hqh" secondAttribute="top" constant="170" id="TeG-0l-zAt"/>
+                                    <constraint firstAttribute="trailing" secondItem="XqB-Pc-5jm" secondAttribute="trailing" constant="323.32999999999998" id="VVm-A0-CC5"/>
                                     <constraint firstItem="XqB-Pc-5jm" firstAttribute="leading" secondItem="ecp-60-hqh" secondAttribute="leadingMargin" id="XVA-SS-x97"/>
                                     <constraint firstItem="zxE-xn-YVv" firstAttribute="leading" secondItem="ecp-60-hqh" secondAttribute="leading" id="b4t-0c-BW0"/>
                                     <constraint firstItem="XqB-Pc-5jm" firstAttribute="leading" secondItem="rMF-Fc-E8v" secondAttribute="leading" id="dug-Yq-0oH"/>
@@ -207,6 +208,7 @@
                                     <constraint firstItem="gFG-NM-AHd" firstAttribute="top" secondItem="IPt-22-svp" secondAttribute="top" id="QTW-e4-M3N"/>
                                     <constraint firstItem="JHQ-uI-ruA" firstAttribute="top" secondItem="gFG-NM-AHd" secondAttribute="bottom" constant="8" symbolic="YES" id="igh-oL-31d"/>
                                     <constraint firstItem="gFG-NM-AHd" firstAttribute="leading" secondItem="IPt-22-svp" secondAttribute="leadingMargin" id="smW-z8-kKo"/>
+                                    <constraint firstItem="gFG-NM-AHd" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IPt-22-svp" secondAttribute="trailing" constant="-272" id="zyO-Mp-YZ3"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -249,13 +251,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMB-Uw-UNa">
-                                            <rect key="frame" x="20" y="10" width="440" height="21"/>
+                                            <rect key="frame" x="20" y="10" width="199" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Teq-Ef-5vd">
-                                            <rect key="frame" x="420" y="11" width="440" height="21"/>
+                                            <rect key="frame" x="179" y="11" width="199" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
