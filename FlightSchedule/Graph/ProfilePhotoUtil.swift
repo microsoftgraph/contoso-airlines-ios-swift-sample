@@ -18,11 +18,13 @@ class ProfilePhotoUtil {
     }
     
     public func getUserPhoto(userId: String, completion: @escaping(UIImage?, Error?)->Void) {
-        let imagePath = "\(NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true))/\(userId).png"
+        let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
+        let imagePath = "\(cachePath)/\(userId).png"
         let imageUrl = URL(fileURLWithPath: imagePath)
         
         let imageData = try? Data(contentsOf: imageUrl)
         if (imageData != nil) {
+            print("Loaded cached photo: \(imagePath)")
             let image = UIImage(data: imageData!, scale: UIScreen.main.scale)
             completion(image, nil)
             return
@@ -36,6 +38,7 @@ class ProfilePhotoUtil {
                 return
             }
             // Save image to cache
+            print("Caching photo: \(imagePath)")
             try? image?.pngData()?.write(to: imageUrl)
             completion(image, error)
         }
@@ -43,23 +46,56 @@ class ProfilePhotoUtil {
     
     public func getUsersPhotos(userIds: [String], completion: @escaping([UIImage?], Error?)->Void) {
         var images = [UIImage?](repeating: nil, count: userIds.count)
-        var photosToFetch = [String]()
+        var photosToFetch: [Int: String] = [:]
+        
+        let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
         
         // Load any cached images
         for (index, userId) in userIds.enumerated() {
-            let imagePath = "\(NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true))/\(userId).png"
+            let imagePath = "\(cachePath)/\(userId).png"
             let imageUrl = URL(fileURLWithPath: imagePath)
             
             let imageData = try? Data(contentsOf: imageUrl)
             if (imageData != nil) {
+                print("Loaded cached photo: \(imagePath)")
                 images[index] = UIImage(data: imageData!, scale: UIScreen.main.scale)
             } else {
                 // User's image not in cache, add to fetch list
-                photosToFetch.append(userId)
+                photosToFetch[index] = userId
             }
         }
         
-        // Fetch remaining user photos from Graph
+        if photosToFetch.count == 0 {
+            completion(images, nil)
+            return
+        }
         
+        // Fetch remaining user photos from Graph
+        print("Need to fetch \(photosToFetch.count) photos")
+        let fetchUserIds = Array(photosToFetch.values)
+        GraphManager.instance.getUserPhotosBatch(userIds: fetchUserIds) {
+            (photos: [UIImage?]?, error:Error?) in
+            guard let userPhotos = photos, error == nil else {
+                print("Error retrieving photos: \(String(describing: error))")
+                // Return the cached images at least
+                completion(images, nil)
+                return
+            }
+            
+            var userPhotoIndex = 0
+            for (index, userId) in photosToFetch {
+                let photo = userPhotos[userPhotoIndex]
+                if (photo != nil) {
+                    let imagePath = "\(cachePath)/\(userId).png"
+                    let imageUrl = URL(fileURLWithPath: imagePath)
+                    print("Caching photo: \(imagePath)")
+                    try? photo!.pngData()?.write(to: imageUrl)
+                }
+                images[index] = userPhotos[userPhotoIndex]
+                userPhotoIndex = userPhotoIndex + 1
+            }
+            
+            completion(images, nil)
+        }
     }
 }

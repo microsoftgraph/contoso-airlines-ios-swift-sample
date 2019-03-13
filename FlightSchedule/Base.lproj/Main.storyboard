@@ -113,7 +113,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMF-Fc-E8v" customClass="NextFlightCardView" customModule="FlightSchedule" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="248" width="398" height="147"/>
+                                        <rect key="frame" x="8" y="248" width="398" height="154"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flight 491" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyb-CA-MZr">
                                                 <rect key="frame" x="145" y="3" width="108" height="30"/>
@@ -134,7 +134,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuV-h7-WCq">
-                                                <rect key="frame" x="8" y="102.66666666666669" width="382" height="35.333333333333343"/>
+                                                <rect key="frame" x="8" y="102.66666666666666" width="382" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <segue destination="i0E-vU-ep2" kind="embed" id="Rl0-qZ-bDg"/>
@@ -152,7 +152,7 @@
                                             <constraint firstItem="kuV-h7-WCq" firstAttribute="leading" secondItem="rMF-Fc-E8v" secondAttribute="leadingMargin" id="im4-yF-BcY"/>
                                             <constraint firstItem="kuV-h7-WCq" firstAttribute="trailing" secondItem="rMF-Fc-E8v" secondAttribute="trailingMargin" id="o9y-Ng-5dr"/>
                                             <constraint firstItem="kuV-h7-WCq" firstAttribute="top" secondItem="piM-FC-Gxn" secondAttribute="bottom" constant="13" id="rJ7-GX-s9w"/>
-                                            <constraint firstAttribute="bottom" secondItem="kuV-h7-WCq" secondAttribute="bottom" constant="9" id="yRq-pV-6bI"/>
+                                            <constraint firstAttribute="bottom" secondItem="kuV-h7-WCq" secondAttribute="bottom" constant="6.3333333333333428" id="yRq-pV-6bI"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -170,7 +170,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="zxE-xn-YVv" firstAttribute="top" secondItem="ecp-60-hqh" secondAttribute="top" id="7gW-qY-aCn"/>
-                                    <constraint firstAttribute="bottom" secondItem="rMF-Fc-E8v" secondAttribute="bottom" constant="1" id="BoZ-8G-5QP"/>
+                                    <constraint firstAttribute="bottom" secondItem="rMF-Fc-E8v" secondAttribute="bottom" constant="-6" id="BoZ-8G-5QP"/>
                                     <constraint firstItem="61I-yc-Hne" firstAttribute="top" secondItem="zxE-xn-YVv" secondAttribute="bottom" constant="42" id="HFE-yY-sDd"/>
                                     <constraint firstItem="zxE-xn-YVv" firstAttribute="centerX" secondItem="61I-yc-Hne" secondAttribute="centerX" id="K9N-X8-xlz"/>
                                     <constraint firstItem="61I-yc-Hne" firstAttribute="top" secondItem="ecp-60-hqh" secondAttribute="top" constant="170" id="TeG-0l-zAt"/>
@@ -295,7 +295,7 @@
             <objects>
                 <collectionViewController id="i0E-vU-ep2" customClass="CrewPhotosViewController" customModule="FlightSchedule" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="cna-RM-uhe">
-                        <rect key="frame" x="0.0" y="0.0" width="382" height="35.333333333333343"/>
+                        <rect key="frame" x="0.0" y="0.0" width="382" height="45"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H3I-Lz-wfZ">
@@ -306,18 +306,25 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CrewPhotoCell" id="Atc-Fq-h5L" customClass="CrewPhotoCollectionViewCell" customModule="FlightSchedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-2.3333333333333335" width="40" height="40"/>
+                                <rect key="frame" x="0.0" y="2.6666666666666665" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zh-s1-8HD">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4zh-s1-8HD">
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="66a-ho-kxl"/>
+                                                <constraint firstAttribute="width" constant="40" id="eIx-4X-0P6"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="4zh-s1-8HD" firstAttribute="top" secondItem="Atc-Fq-h5L" secondAttribute="top" id="Fxd-0S-RhO"/>
+                                    <constraint firstItem="4zh-s1-8HD" firstAttribute="leading" secondItem="Atc-Fq-h5L" secondAttribute="leading" id="uvS-fE-PsC"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="crewImageView" destination="4zh-s1-8HD" id="odi-eF-lfe"/>
                                 </connections>

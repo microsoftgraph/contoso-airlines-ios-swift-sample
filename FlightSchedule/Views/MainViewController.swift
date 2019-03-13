@@ -26,7 +26,8 @@ class MainViewController: UIViewController {
         spinner!.didMove(toParent: self)
         
         let userIds = [ "49f60b80-4448-4b22-b499-a1c757a0d9e6", "b4ccd4ac-a66d-4a35-ad41-7258bace4c0f", "668acae2-d14d-4d14-b338-af7ba855e09a" ]
-        GraphManager.instance.getUserPhotosBatch(userIds: userIds) {
+        
+        ProfilePhotoUtil.instance.getUsersPhotos(userIds: userIds) {
             (images: [UIImage?]?, error: Error?) in
             guard let userImages = images, error == nil else {
                 return
@@ -43,7 +44,7 @@ class MainViewController: UIViewController {
                 return
             }
             
-            GraphManager.instance.getUserPhoto(userId: me.id!, completion: {
+            ProfilePhotoUtil.instance.getUserPhoto(userId: me.id!, completion: {
                 (image: UIImage?, photoError: Error?) in
                 guard let userPhoto = image, photoError == nil else {
                     print("Error getting photo: \(photoError!)")
