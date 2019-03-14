@@ -12,9 +12,13 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var profilePictureView: UIImageView!
     @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var nextFlightNumber: UILabel!
+    @IBOutlet weak var nextFlightName: UILabel!
+    @IBOutlet weak var nextFlightDeparture: UILabel!
     
     var spinner: SpinnerViewController?
     var crewPhotosVC: CrewPhotosViewController?
+    var flightScheduleVC: FlightScheduleViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +56,18 @@ class MainViewController: UIViewController {
                     return
                 } 
                 self.updateUserInfo(name: me.displayName!, profilePhoto: userPhoto)
+                
+                let start = Calendar.current.startOfDay(for: Date())
+                let end = Calendar.current.date(byAdding: .day, value: 30, to: start)
+                
+                GraphManager.instance.getCalendarView(start: start, end: end!, completion: {
+                    (events: [GraphEvent]?, error: Error?) in
+                    guard let flights = events, error == nil else {
+                        return
+                    }
+                    
+                    self.updateFlights(flights: flights)
+                })
             })
         }
         
@@ -62,6 +78,8 @@ class MainViewController: UIViewController {
         switch segue.destination {
         case let crewPhotosVC as CrewPhotosViewController:
             self.crewPhotosVC = crewPhotosVC
+        case let flightScheduleVC as FlightScheduleViewController:
+            self.flightScheduleVC = flightScheduleVC
         default:
             break;
         }
@@ -85,6 +103,27 @@ class MainViewController: UIViewController {
             self.spinner!.willMove(toParent: nil)
             self.spinner!.view.removeFromSuperview()
             self.spinner!.removeFromParent()
+        }
+    }
+    
+    private func updateFlights(flights: [GraphEvent]) {
+        DispatchQueue.main.async {
+            if (flights.count > 0) {
+                let nextFlight = flights.first
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .medium
+                dateFormatter.timeStyle = .short
+                
+                self.nextFlightNumber.text = nextFlight?.subject
+                self.nextFlightName.text = nextFlight?.location
+                let departure = dateFormatter.string(from: (nextFlight?.start)!)
+                self.nextFlightDeparture.text = "Departs: \(departure)"
+                
+                var remainingFlights = flights
+                remainingFlights.removeFirst()
+                self.flightScheduleVC?.setFlights(flights: remainingFlights)
+            }
         }
     }
 }

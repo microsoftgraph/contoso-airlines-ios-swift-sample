@@ -40,7 +40,6 @@ class AuthenticationManager {
         } catch {
             print("Error creating public client application: \(error)")
             publicClient = nil
-            //authContext = nil
         }
     }
 

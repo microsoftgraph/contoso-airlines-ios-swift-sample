@@ -138,4 +138,40 @@ class GraphManager {
             print("Error creating batch request: \(error)")
         }
     }
+    
+    public func getCalendarView(start: Date, end: Date, completion: @escaping([GraphEvent]?, Error?)->Void) {
+        let dateFormatter = ISO8601DateFormatter()
+        let startISO = dateFormatter.string(from: start)
+        let endISO = dateFormatter.string(from: end)
+        
+        let calendarViewRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/me/calendarview?startDateTime=\(startISO)&endDateTime=\(endISO)&$select=subject,location,start,end,attendees&orderby=start/dateTime")!)
+        let calendarViewDataTask = MSURLSessionDataTask(request: calendarViewRequest, client: client, completion: {
+            (data: Data?, response: URLResponse?, graphError: Error?) in
+            guard let calendarViewData = data, graphError == nil else {
+                completion(nil, graphError)
+                return
+            }
+            
+            do {
+                let eventsJson = try JSONSerialization.jsonObject(with: calendarViewData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
+                print("Events JSON: \(String(describing: eventsJson))")
+                let eventArray = eventsJson?["value"] as? [[String: Any]]
+                
+                var events: [GraphEvent] = []
+                if (eventArray != nil)
+                {
+                    eventArray?.forEach({
+                        (eventObj: [String : Any]) in
+                        let event = GraphEvent(json: eventObj)
+                        events.append(event!)
+                    })
+                }
+                completion(events, nil)
+            } catch {
+                completion(nil, error)
+            }
+        })
+        
+        calendarViewDataTask?.execute()
+    }
 }

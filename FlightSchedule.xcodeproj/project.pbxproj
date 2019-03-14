@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9604F9FF2239847E00ED98F1 /* GraphEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9604F9FE2239847E00ED98F1 /* GraphEvent.swift */; };
 		962086252238029000D8A821 /* CrewPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086242238028F00D8A821 /* CrewPhotosViewController.swift */; };
 		962086272238225A00D8A821 /* NextFlightCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086262238225A00D8A821 /* NextFlightCardView.swift */; };
 		962086292238343D00D8A821 /* FlightScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086282238343D00D8A821 /* FlightScheduleViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		0C519944915FF3EBBE0BF988 /* Pods-FlightSchedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightSchedule.release.xcconfig"; path = "Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule.release.xcconfig"; sourceTree = "<group>"; };
 		5E8A615F090F053778B5A7B5 /* Pods_FlightSchedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightSchedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9604F9FE2239847E00ED98F1 /* GraphEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphEvent.swift; sourceTree = "<group>"; };
 		962086242238028F00D8A821 /* CrewPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPhotosViewController.swift; sourceTree = "<group>"; };
 		962086262238225A00D8A821 /* NextFlightCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextFlightCardView.swift; sourceTree = "<group>"; };
 		962086282238343D00D8A821 /* FlightScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightScheduleViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				963D5E812233174D003BA02C /* GraphUser.swift */,
+				9604F9FE2239847E00ED98F1 /* GraphEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				963D5E8822331F55003BA02C /* SpinnerViewController.swift in Sources */,
 				963D5E952237E399003BA02C /* CrewPhotoCollectionViewCell.swift in Sources */,
 				9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */,
+				9604F9FF2239847E00ED98F1 /* GraphEvent.swift in Sources */,
 				963D5E7F22330267003BA02C /* GraphAuthProvider.swift in Sources */,
 				962086272238225A00D8A821 /* NextFlightCardView.swift in Sources */,
 			);

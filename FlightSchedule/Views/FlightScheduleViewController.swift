@@ -12,6 +12,7 @@ import UIKit
 class FlightScheduleViewController: UITableViewController {
     
     private let tableCellIdentifier = "ScheduleCell"
+    var flights: [GraphEvent]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,24 +33,31 @@ class FlightScheduleViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return flights?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! FlightScheduleViewCell
 
+        let flight = flights?[indexPath.row]
+        
         // Configure the cell...
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         
-        let date = Date(timeIntervalSinceNow: 0)
-        
-        cell.flightName = "Flight 999"
-        cell.departureTime = formatter.string(from: date)
+        cell.flightName = flight?.subject
+        cell.departureTime = formatter.string(from: (flight?.start)!)
         
         return cell
+    }
+    
+    public func setFlights(flights: [GraphEvent]) {
+        self.flights = flights
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     /*

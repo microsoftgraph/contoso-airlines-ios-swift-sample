@@ -226,6 +226,9 @@
                         <viewLayoutGuide key="safeArea" id="7bI-wY-aaX"/>
                     </view>
                     <connections>
+                        <outlet property="nextFlightDeparture" destination="piM-FC-Gxn" id="Ij8-Px-kau"/>
+                        <outlet property="nextFlightName" destination="qoh-qt-qhg" id="a9D-qh-OKB"/>
+                        <outlet property="nextFlightNumber" destination="lyb-CA-MZr" id="cZe-BL-nqR"/>
                         <outlet property="profilePictureView" destination="m1H-WJ-QEo" id="Hp7-qA-Ore"/>
                         <outlet property="userLabel" destination="BJJ-dx-Xt3" id="gBN-TX-FQB"/>
                     </connections>
