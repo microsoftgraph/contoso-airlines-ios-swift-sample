@@ -2,8 +2,8 @@
 //  GraphAuthProvider.swift
 //  FlightSchedule
 //
-//  Created by Jason Johnston on 3/8/19.
-//  Copyright © 2019 Jason Johnston. All rights reserved.
+//  Copyright (c) Microsoft. All rights reserved.
+//  Licensed under the MIT license. See LICENSE.txt in the project root for license information.
 //
 
 import Foundation

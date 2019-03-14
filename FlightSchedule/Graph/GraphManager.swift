@@ -2,8 +2,8 @@
 //  GraphManager.swift
 //  FlightSchedule
 //
-//  Created by Jason Johnston on 3/8/19.
-//  Copyright © 2019 Jason Johnston. All rights reserved.
+//  Copyright (c) Microsoft. All rights reserved.
+//  Licensed under the MIT license. See LICENSE.txt in the project root for license information.
 //
 
 import Foundation
@@ -20,7 +20,9 @@ class GraphManager {
         client = MSClientFactory.createHTTPClient(with: authProvider)
     }
     
+    // Gets the logged-in user
     public func getMe(completion: @escaping(GraphUser?, Error?)->Void) {
+        // GET /me
         let meRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/me")!)
         let meDataTask = MSURLSessionDataTask(request: meRequest, client: client, completion: {
             (data: Data?, response: URLResponse?, graphError: Error?) in
@@ -29,12 +31,9 @@ class GraphManager {
                 return
             }
             
-            print("getMe returned \(meData)")
             do {
                 let me = try JSONSerialization.jsonObject(with: meData, options: JSONSerialization.ReadingOptions.mutableContainers)
-                print("Parsed: \(me)")
                 let user = GraphUser(json: (me as? [String: Any])!)
-                print("Model: \(String(describing: user))")
                 completion(user, nil)
             } catch {
                 completion(nil, error)
@@ -44,7 +43,9 @@ class GraphManager {
         meDataTask?.execute()
     }
     
+    // Gets a single user's photo
     public func getUserPhoto(userId: String, completion: @escaping(UIImage?, Error?)->Void) {
+        // GET /users/{id}/photo/$value
         let photoRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/users/\(userId)/photo/$value")!)
         let photoDataTask = MSURLSessionDataTask(request: photoRequest, client: client, completion: {
             (data: Data?, response: URLResponse?, graphError: Error?) in
@@ -53,7 +54,6 @@ class GraphManager {
                 return
             }
             
-            print("getUserPhoto returned \(photoData)")
             let image = UIImage(data: photoData)
             completion(image, nil)
         })
@@ -61,6 +61,7 @@ class GraphManager {
         photoDataTask?.execute()
     }
     
+    // Gets multiple user photos in a batch
     public func getUserPhotosBatch(userIds: [String], completion: @escaping([UIImage?]?, Error?)->Void) {
         // If only one, just make a normal call
         if userIds.count == 1 {
@@ -72,12 +73,14 @@ class GraphManager {
             return
         }
         
-        // Create batch requestd
+        // Create batch request
         var batchSteps = [MSBatchRequestStep]()
         var stepId = 1
         
         userIds.forEach {
+            // Create a batch step and add to the batch
             (userId: String) in
+            // GET /users/{id}/photo/$value
             let photoRequest = NSMutableURLRequest(url: URL(string: "/users/\(userId)/photo/$value")!)
             let photoBatchStep = MSBatchRequestStep(id: "\(stepId)", request: photoRequest, andDependsOn: nil)
             batchSteps.append(photoBatchStep!)
@@ -87,6 +90,7 @@ class GraphManager {
         do {
             let batchRequestContent = try MSBatchRequestContent(requests: batchSteps)
             
+            // POST /$batch
             let batchRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/$batch")!)
             batchRequest.httpMethod = "POST"
             batchRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -108,6 +112,8 @@ class GraphManager {
                     var images = [UIImage?]()
                     
                     for i in 1...userIds.count {
+                        // Find each response in the batch response and map the
+                        // returned image to the user ID
                         let imageResponse = responseContent.getResponseById("\(i)") as NSDictionary?
                         let imageStatus = imageResponse?["status"] as! Int
                         if (imageStatus == 200) {
@@ -139,11 +145,15 @@ class GraphManager {
         }
     }
     
+    // Gets the logged-in user's calendar view
     public func getCalendarView(start: Date, end: Date, completion: @escaping([GraphEvent]?, Error?)->Void) {
         let dateFormatter = ISO8601DateFormatter()
         let startISO = dateFormatter.string(from: start)
         let endISO = dateFormatter.string(from: end)
         
+        // GET /me/calendarview?startDateTime={start}&endDateTime={end}&
+        // $select=subject,location,start,end,attendees&
+        // $orderby=start/dateTime
         let calendarViewRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/me/calendarview?startDateTime=\(startISO)&endDateTime=\(endISO)&$select=subject,location,start,end,attendees&orderby=start/dateTime")!)
         let calendarViewDataTask = MSURLSessionDataTask(request: calendarViewRequest, client: client, completion: {
             (data: Data?, response: URLResponse?, graphError: Error?) in
@@ -173,5 +183,10 @@ class GraphManager {
         })
         
         calendarViewDataTask?.execute()
+    }
+    
+    // Looks up multiple users by email address and returns their user objects
+    public func getUsersByEmail(emails: [String], completion: @escaping([GraphUser?]?, Error?)->Void) {
+        
     }
 }

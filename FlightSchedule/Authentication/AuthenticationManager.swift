@@ -2,8 +2,8 @@
 //  AuthenticationManager.swift
 //  FlightSchedule
 //
-//  Created by Jason Johnston on 3/6/19.
-//  Copyright © 2019 Jason Johnston. All rights reserved.
+//  Copyright (c) Microsoft. All rights reserved.
+//  Licensed under the MIT license. See LICENSE.txt in the project root for license information.
 //
 
 import Foundation
@@ -16,10 +16,10 @@ class AuthenticationManager {
     private let publicClient: MSALPublicClientApplication?
     private var currentAccount: MSALAccount?
 
-    //private let authContext: ADAuthenticationContext?
-
     private init() {
         do {
+            // Uncomment this block to enable MSAL logging
+            /*
             MSALLogger.shared().setCallback {
                 (level: MSALLogLevel, message: String?, containsPII: Bool) in
                 guard let logMessage = message else {
@@ -30,6 +30,7 @@ class AuthenticationManager {
                     print(logMessage)
                 }
             }
+            */
 
             let authorityUrl = URL(string: "https://login.microsoftonline.com/\(AppConfig.tenantId)")!
             let authority = try MSALAuthority(url: authorityUrl)
@@ -43,6 +44,9 @@ class AuthenticationManager {
         }
     }
 
+    // Get the first account from the MSAL cache
+    // App only does a single account sign-in, so first should
+    // be the right acccount
     public func getAccount() -> MSALAccount? {
         var acc: MSALAccount?
         do {
@@ -55,6 +59,7 @@ class AuthenticationManager {
         return account
     }
 
+    // Sign in interactively
     public func signInAccount(completion: @escaping(MSALAccount?, _ accessToken: String?, Error?) -> Void) {
         publicClient?.acquireToken(forScopes: AppConfig.scopes, completionBlock: {
             (result: MSALResult?, error: Error?) in
@@ -67,6 +72,7 @@ class AuthenticationManager {
         })
     }
 
+    // Sign out
     public func signOutAccounts() {
         do {
             let accounts = try publicClient?.allAccounts()
@@ -81,6 +87,7 @@ class AuthenticationManager {
 
     }
 
+    // Get a token for Graph scopes
     public func getGraphToken(completion: @escaping(_ accessToken: String?, Error?) -> Void) {
         // First attempt to get token silently
         var firstAccount: MSALAccount?
@@ -109,6 +116,8 @@ class AuthenticationManager {
         }
     }
 
+    // Get a token for other resources
+    // Used for cross-device notification endpoints
     public func getTokenWithScopes(scopes: [String], completion: @escaping(_ accessToken: String?, Error?) -> Void) {
         let account = getAccount()
 

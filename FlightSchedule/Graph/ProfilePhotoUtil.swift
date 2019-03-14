@@ -2,8 +2,8 @@
 //  ProfilePhotoUtil.swift
 //  FlightSchedule
 //
-//  Created by Jason Johnston on 3/11/19.
-//  Copyright © 2019 Jason Johnston. All rights reserved.
+//  Copyright (c) Microsoft. All rights reserved.
+//  Licensed under the MIT license. See LICENSE.txt in the project root for license information.
 //
 
 import Foundation
@@ -12,13 +12,15 @@ import UIKit
 
 class ProfilePhotoUtil {
     static let instance = ProfilePhotoUtil()
+    private let cachePath: String
     
     private init() {
-        
+        cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
     }
     
+    // Get a single user photo by checking the cached copies first
+    // If not in cache, make a Graph call to download and cache the photo
     public func getUserPhoto(userId: String, completion: @escaping(UIImage?, Error?)->Void) {
-        let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
         let imagePath = "\(cachePath)/\(userId).png"
         let imageUrl = URL(fileURLWithPath: imagePath)
         
@@ -44,11 +46,12 @@ class ProfilePhotoUtil {
         }
     }
     
+    // Get multiple users' photos by checking the cached copies first
+    // For any not in cache, make a batch call to Graph to download them
+    // and save in the cache
     public func getUsersPhotos(userIds: [String], completion: @escaping([UIImage?], Error?)->Void) {
         var images = [UIImage?](repeating: nil, count: userIds.count)
         var photosToFetch: [Int: String] = [:]
-        
-        let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
         
         // Load any cached images
         for (index, userId) in userIds.enumerated() {
@@ -86,7 +89,7 @@ class ProfilePhotoUtil {
             for (index, userId) in photosToFetch {
                 let photo = userPhotos[userPhotoIndex]
                 if (photo != nil) {
-                    let imagePath = "\(cachePath)/\(userId).png"
+                    let imagePath = "\(self.cachePath)/\(userId).png"
                     let imageUrl = URL(fileURLWithPath: imagePath)
                     print("Caching photo: \(imagePath)")
                     try? photo!.pngData()?.write(to: imageUrl)

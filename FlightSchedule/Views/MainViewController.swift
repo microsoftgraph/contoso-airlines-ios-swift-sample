@@ -2,8 +2,8 @@
 //  MainViewController.swift
 //  FlightSchedule
 //
-//  Created by Jason Johnston on 3/6/19.
-//  Copyright © 2019 Jason Johnston. All rights reserved.
+//  Copyright (c) Microsoft. All rights reserved.
+//  Licensed under the MIT license. See LICENSE.txt in the project root for license information.
 //
 
 import UIKit
@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
         spinner = SpinnerViewController()
         addChild(spinner!)
         spinner!.view.frame = view.frame
@@ -40,6 +40,7 @@ class MainViewController: UIViewController {
             self.crewPhotosVC?.setPhotos(photos: userImages)
         }
         
+        // Get the logged-in user
         GraphManager.instance.getMe {
             (user: GraphUser?, error: Error?) in
             guard let me = user, error == nil else {
@@ -48,6 +49,7 @@ class MainViewController: UIViewController {
                 return
             }
             
+            // Get the user's photo
             ProfilePhotoUtil.instance.getUserPhoto(userId: me.id!, completion: {
                 (image: UIImage?, photoError: Error?) in
                 guard let userPhoto = image, photoError == nil else {
@@ -57,6 +59,7 @@ class MainViewController: UIViewController {
                 } 
                 self.updateUserInfo(name: me.displayName!, profilePhoto: userPhoto)
                 
+                // Get the users calendar for the next 30 days
                 let start = Calendar.current.startOfDay(for: Date())
                 let end = Calendar.current.date(byAdding: .day, value: 30, to: start)
                 

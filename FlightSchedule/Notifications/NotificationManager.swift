@@ -2,8 +2,8 @@
 //  NotificationManager.swift
 //  FlightSchedule
 //
-//  Created by Jason Johnston on 3/6/19.
-//  Copyright © 2019 Jason Johnston. All rights reserved.
+//  Copyright (c) Microsoft. All rights reserved.
+//  Licensed under the MIT license. See LICENSE.txt in the project root for license information.
 //
 
 import Foundation
@@ -31,13 +31,13 @@ class NotificationManager {
         registration.appId = Bundle.main.bundleIdentifier!
         registration.appDisplayName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
 
+        // Called by Project Rome SDK when it needs an access token
         platform.accountManager.accessTokenRequested.subscribe {
             (acctMgr, eventArgs) in
 
             print("Original scopes: \(eventArgs.request.scopes)")
 
             var askScopes: [String] = []
-            var token = ""
 
             if eventArgs.request.scopes.contains("https://wns.windows.com/") {
                 askScopes.append("https://wns.windows.com/.default")
@@ -49,14 +49,8 @@ class NotificationManager {
                 askScopes.append("https://cs.dds.microsoft.com/.default")
             }
 
-            if !token.isEmpty {
-                eventArgs.request.complete(withAccessToken: token)
-                return
-            }
-
             print("Requesting scopes: \(askScopes)")
             // Get token from MSAL
-
             AuthenticationManager.instance.getTokenWithScopes(scopes: askScopes, completion: {
                 (token: String?, error: Error?) in
                 guard let accessToken = token, error == nil else {
@@ -89,6 +83,8 @@ class NotificationManager {
         platform.start()
     }
 
+    // Takes the APNS device token and register that with
+    // the Project Rome cross-device notification service
     public func registerWithDeviceToken(deviceToken: String) {
         self.registration.token = deviceToken
 
@@ -114,6 +110,7 @@ class NotificationManager {
 
                 let dataFeed = MCDUserDataFeed.getFor(mcdAccount!, platform: self.platform, activitySourceHost: AppConfig.notificationDomain)
 
+                // Subscribe to the incoming notification feed
                 dataFeed?.subscribe(toSyncScopesAsync: [MCDUserNotificationChannel.syncScope], callback: {
                     (result: Bool, error: Error?) in
                     guard error == nil else {
@@ -133,6 +130,8 @@ class NotificationManager {
         }
     }
 
+    // Attempts to process an incoming APNS notification as
+    // a Project Rome notification
     public func processNotification(userInfo: [AnyHashable: Any]) {
         let operation = platform.processNotification(userInfo)
         if !operation.isConnectedDevicesNotification {
@@ -140,6 +139,7 @@ class NotificationManager {
         }
     }
 
+    // Read the incoming notification feed
     private func doRead() {
         self.reader?.readBatchAsync(withMaxSize: UInt.max, completion: {
             (notifications: [MCDUserNotification]?, error: Error?) in
@@ -183,6 +183,7 @@ class NotificationManager {
         })
     }
 
+    // Display a notification on the device
     private func postNotification(notification: MCDUserNotification) {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "Flight Schedule"
