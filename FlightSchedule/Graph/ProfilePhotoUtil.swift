@@ -95,7 +95,7 @@ class ProfilePhotoUtil {
                     try? photo!.pngData()?.write(to: imageUrl)
                 }
                 images[index] = userPhotos[userPhotoIndex]
-                userPhotoIndex = userPhotoIndex + 1
+                userPhotoIndex += 1
             }
             
             completion(images, nil)

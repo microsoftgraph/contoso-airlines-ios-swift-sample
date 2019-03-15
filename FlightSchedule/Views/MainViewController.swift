@@ -29,17 +29,6 @@ class MainViewController: UIViewController {
         view.addSubview(spinner!.view)
         spinner!.didMove(toParent: self)
         
-        let userIds = [ "49f60b80-4448-4b22-b499-a1c757a0d9e6", "b4ccd4ac-a66d-4a35-ad41-7258bace4c0f", "668acae2-d14d-4d14-b338-af7ba855e09a" ]
-        
-        ProfilePhotoUtil.instance.getUsersPhotos(userIds: userIds) {
-            (images: [UIImage?]?, error: Error?) in
-            guard let userImages = images, error == nil else {
-                return
-            }
-            
-            self.crewPhotosVC?.setPhotos(photos: userImages)
-        }
-        
         // Get the logged-in user
         GraphManager.instance.getMe {
             (user: GraphUser?, error: Error?) in
@@ -123,10 +112,27 @@ class MainViewController: UIViewController {
                 let departure = dateFormatter.string(from: (nextFlight?.start)!)
                 self.nextFlightDeparture.text = "Departs: \(departure)"
                 
+                GraphManager.instance.getUsersByEmail(emails: (nextFlight?.attendees)!, completion: {
+                    (users: [GraphUser?]?, error: Error?) in
+                    guard let crew = users, error == nil else {
+                        return
+                    }
+                    
+                    
+                })
+                
                 var remainingFlights = flights
                 remainingFlights.removeFirst()
                 self.flightScheduleVC?.setFlights(flights: remainingFlights)
             }
         }
+    }
+    
+    private func showSpinner() {
+        
+    }
+    
+    private func hideSpinner() {
+        
     }
 }

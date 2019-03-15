@@ -84,7 +84,7 @@ class GraphManager {
             let photoRequest = NSMutableURLRequest(url: URL(string: "/users/\(userId)/photo/$value")!)
             let photoBatchStep = MSBatchRequestStep(id: "\(stepId)", request: photoRequest, andDependsOn: nil)
             batchSteps.append(photoBatchStep!)
-            stepId = stepId+1
+            stepId += 1
         }
         
         do {
@@ -187,6 +187,70 @@ class GraphManager {
     
     // Looks up multiple users by email address and returns their user objects
     public func getUsersByEmail(emails: [String], completion: @escaping([GraphUser?]?, Error?)->Void) {
+        // Create batch request
+        var batchSteps = [MSBatchRequestStep]()
+        var stepId = 1
         
+        emails.forEach {
+            (email: String) in
+            // GET /users/{email}
+            let userRequest = NSMutableURLRequest(url: URL(string: "/users/\(email)")!)
+            let userBatchStep = MSBatchRequestStep(id: "\(stepId)", request: userRequest, andDependsOn: nil)
+            batchSteps.append(userBatchStep!)
+            stepId += 1
+        }
+        
+        do {
+            let batchRequestContent = try MSBatchRequestContent(requests: batchSteps)
+            
+            // POST /$batch
+            let batchRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/$batch")!)
+            batchRequest.httpMethod = "POST"
+            batchRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let bodyData = try JSONSerialization.data(withJSONObject: batchRequestContent.getBatchRequestContent(), options: JSONSerialization.WritingOptions.prettyPrinted)
+            batchRequest.httpBody = bodyData
+            
+            let batchTask = MSURLSessionDataTask(request: batchRequest, client: client) {
+                (data: Data?, response: URLResponse?, error: Error?) in
+                guard let responseData = data, error == nil else {
+                    print("Batch returned error: \(error!)")
+                    completion(nil, error)
+                    return
+                }
+                
+                do {
+                    let responseContent = try MSBatchResponseContent(batchResponseData: responseData, options: JSONSerialization.ReadingOptions.mutableContainers)
+                    
+                    var users = [GraphUser?]()
+                    
+                    for i in 1...emails.count {
+                        // Find each response in the batch response and map the
+                        // returned user to the email
+                        let userResponse = responseContent.getResponseById("\(i)") as NSDictionary?
+                        let userStatus = userResponse?["status"] as! Int
+                        if (userStatus == 200) {
+                            let userJson = userResponse?["body"] as? [String: Any]
+                            let user = GraphUser(json: userJson!)
+                            users.append(user)
+                        } else {
+                            let userError = userResponse?["body"] as! NSDictionary?
+                            print("Error from request \(i): \(String(describing: userError))")
+                            users.append(nil)
+                        }
+                    }
+                    
+                    completion(users, nil)
+                    
+                } catch {
+                    print("Error reading response: \(error)")
+                    completion(nil, error)
+                }
+            }
+            
+            batchTask?.execute()
+        } catch {
+            print("Error creating batch request: \(error)")
+        }
     }
 }
