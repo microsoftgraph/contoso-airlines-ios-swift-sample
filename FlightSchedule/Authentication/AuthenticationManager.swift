@@ -19,7 +19,8 @@ class AuthenticationManager {
     private init() {
         do {
             // Uncomment this block to enable MSAL logging
-            /*
+            MSALLogger.shared().piiLoggingEnabled = true
+            MSALLogger.shared().level = .verbose
             MSALLogger.shared().setCallback {
                 (level: MSALLogLevel, message: String?, containsPII: Bool) in
                 guard let logMessage = message else {
@@ -30,12 +31,12 @@ class AuthenticationManager {
                     print(logMessage)
                 }
             }
-            */
+            
 
             let authorityUrl = URL(string: "https://login.microsoftonline.com/\(AppConfig.tenantId)")!
             let authority = try MSALAuthority(url: authorityUrl)
             try publicClient = MSALPublicClientApplication(clientId: AppConfig.appId,
-                                                           keychainGroup: Bundle.main.bundleIdentifier!,
+                                                           keychainGroup: "com.microsoft.adalcache",
                                                            authority: authority)
 
         } catch {
@@ -126,13 +127,32 @@ class AuthenticationManager {
             completion(nil, error);
             return;
         }
-
+        /*
+        let adalClient = ADAuthenticationContext(authority: "https://login.microsoftonline.com/\(AppConfig.tenantId)", error: nil)
+        adalClient?.acquireTokenSilent(withResource: "https://wns.windows.com/", clientId: AppConfig.appId, redirectUri: URL(string: "urn:ietf:wg:oauth:2.0:oob"), userId: userAccount.username, completionBlock: {
+            (result: ADAuthenticationResult?) in
+            guard let authResult = result else {
+                print("ADAL returned no result??")
+                completion(nil, NSError(domain: "AuthenticationManager", code: ADErrorCode.ERROR_UNEXPECTED.rawValue, userInfo: nil))
+                return
+            }
+            
+            if authResult.status != AD_SUCCEEDED {
+                completion(nil, authResult.error)
+                return
+            }
+            
+            completion(authResult.accessToken, nil)
+        })
+         */
+        
         publicClient?.acquireTokenSilent(
             forScopes: scopes,
             account: userAccount, completionBlock: {
                 (result: MSALResult?, error: Error?) in
 
                 guard let tokenResult = result, error == nil else {
+                    print("TOKEN ERROR: \(String(describing: error))")
                     completion(nil, error)
                     return
                 }

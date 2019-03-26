@@ -141,7 +141,7 @@ extension AppDelegate {
     }
 }
 
-// Extension tell app to be able to get notification when in use and also for extensions
+// Extension to tell app to be able to get notification when in use
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.alert)
