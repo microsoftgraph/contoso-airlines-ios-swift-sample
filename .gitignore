@@ -72,3 +72,5 @@ fastlane/test_output
 
 # Configuration
 AppConfig.swift
+
+ProjectRomeTokens/Pods

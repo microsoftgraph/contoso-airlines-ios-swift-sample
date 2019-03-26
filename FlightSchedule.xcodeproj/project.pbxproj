@@ -27,8 +27,27 @@
 		96E301CE2230004A00744ABF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CD2230004A00744ABF /* NotificationManager.swift */; };
 		96E301D02230372D00744ABF /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CF2230372D00744ABF /* AuthenticationManager.swift */; };
 		96E301D522304C4E00744ABF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301D422304C4E00744ABF /* MainViewController.swift */; };
+		96EE3C21224A825A00BE01D3 /* ProjectRomeTokens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */; };
+		96EE3C22224A825A00BE01D3 /* ProjectRomeTokens.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96EE3C25224A841200BE01D3 /* ADAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C24224A841200BE01D3 /* ADAL.framework */; };
+		96EE3C26224A841200BE01D3 /* ADAL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C24224A841200BE01D3 /* ADAL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C21EC19922059BB07BFF65F6 /* Pods_FlightSchedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8A615F090F053778B5A7B5 /* Pods_FlightSchedule.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		96EE3C23224A825A00BE01D3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				96EE3C26224A841200BE01D3 /* ADAL.framework in Embed Frameworks */,
+				96EE3C22224A825A00BE01D3 /* ProjectRomeTokens.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0C519944915FF3EBBE0BF988 /* Pods-FlightSchedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightSchedule.release.xcconfig"; path = "Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule.release.xcconfig"; sourceTree = "<group>"; };
@@ -56,6 +75,8 @@
 		96E301CD2230004A00744ABF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		96E301CF2230372D00744ABF /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		96E301D422304C4E00744ABF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProjectRomeTokens.framework; sourceTree = "<group>"; };
+		96EE3C24224A841200BE01D3 /* ADAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ADAL.framework; sourceTree = "<group>"; };
 		B77DAAE761D362AA986C7A46 /* Pods-FlightSchedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightSchedule.debug.xcconfig"; path = "Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +86,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C21EC19922059BB07BFF65F6 /* Pods_FlightSchedule.framework in Frameworks */,
+				96EE3C25224A841200BE01D3 /* ADAL.framework in Frameworks */,
+				96EE3C21224A825A00BE01D3 /* ProjectRomeTokens.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +155,8 @@
 		965B15DC222ED16B006F398D = {
 			isa = PBXGroup;
 			children = (
+				96EE3C24224A841200BE01D3 /* ADAL.framework */,
+				96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */,
 				965B15E7222ED16B006F398D /* FlightSchedule */,
 				965B15E6222ED16B006F398D /* Products */,
 				DC7DEE6A1E265862E195550D /* Pods */,
@@ -195,6 +220,7 @@
 				965B15E2222ED16B006F398D /* Frameworks */,
 				965B15E3222ED16B006F398D /* Resources */,
 				23594F1887BFBF9639098AF9 /* [CP] Embed Pods Frameworks */,
+				96EE3C23224A825A00BE01D3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -485,7 +511,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 627WDN8ZS4;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "${inherited}";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = FlightSchedule/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -508,7 +537,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 627WDN8ZS4;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "${inherited}";
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = "${inherited}";
 				INFOPLIST_FILE = FlightSchedule/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

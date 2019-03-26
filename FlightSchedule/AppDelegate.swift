@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        UNUserNotificationCenter.current().delegate = self
+        //UNUserNotificationCenter.current().delegate = self
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let account = AuthenticationManager.instance.getAccount()
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showSignInView()
         }
         else {
-            //registerForPushNotifications()
+            registerForPushNotifications()
             showMainView()
         }
         
@@ -89,28 +89,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Failed to register: \(error)")
     }
     
-    func application(_ _application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Recieved remote notification")
         
-        // Test posting the notification
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "Flight Schedule"
-        notificationContent.body = "OK"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: "yep", content: notificationContent, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: {
-            (error: Error?) in
-            if (error == nil) {
-                print("Posted notification")
-            } else {
-                print("Error posting notification: \(error!)")
-            }
-        })
-        
-        NotificationManager.instance.processNotification(userInfo: userInfo)
+        if NotificationManager.instance.processNotification(userInfo: userInfo) {
+            // Refresh flight list
+        } else {
+            print("Not a Graph notification")
+        }
     }
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -142,8 +129,15 @@ extension AppDelegate {
 }
 
 // Extension to tell app to be able to get notification when in use
+/*
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.alert)
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Notif response")
+        completionHandler()
+    }
 }
+*/

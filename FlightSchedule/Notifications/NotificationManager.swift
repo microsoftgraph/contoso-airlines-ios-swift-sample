@@ -10,6 +10,7 @@ import Foundation
 import ConnectedDevices
 import MSAL
 import UserNotifications
+import ProjectRomeTokens
 
 class NotificationManager {
     static let instance = NotificationManager()
@@ -20,6 +21,7 @@ class NotificationManager {
     private var reader: MCDUserNotificationReader?
     private var readerSubscription: MCDEventSubscription?
     private var currentNotifications: [MCDUserNotification]
+    private let tokenGetter: TokenGetter
 
     private init() {
         platform = MCDConnectedDevicesPlatform()!
@@ -30,28 +32,18 @@ class NotificationManager {
         registration.type = MCDConnectedDevicesNotificationType.notificationTypeAPN
         registration.appId = Bundle.main.bundleIdentifier!
         registration.appDisplayName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
+        
+        tokenGetter = TokenGetter(appId: AppConfig.appId, tenantId: AppConfig.tenantId)
 
         // Called by Project Rome SDK when it needs an access token
         platform.accountManager.accessTokenRequested.subscribe {
             (acctMgr, eventArgs) in
 
             print("Original scopes: \(eventArgs.request.scopes)")
-
-            var askScopes: [String] = []
-
-            if eventArgs.request.scopes.contains("https://wns.windows.com/") {
-                askScopes.append("https://wns.windows.com/.default")
-            } else if eventArgs.request.scopes.contains("https://cdpcs.access.microsoft.com") {
-                askScopes.append("https://cdpcs.access.microsoft.com/.default")
-            } else if eventArgs.request.scopes.contains("https://activity.microsoft.com") {
-                askScopes.append("https://activity.microsoft.com/.default")
-            } else if eventArgs.request.scopes.contains("https://cs.dds.microsoft.com") {
-                askScopes.append("https://cs.dds.microsoft.com/.default")
-            }
-
-            print("Requesting scopes: \(askScopes)")
-            // Get token from MSAL
-            AuthenticationManager.instance.getTokenWithScopes(scopes: askScopes, completion: {
+            
+            let account = AuthenticationManager.instance.getAccount()
+            
+            self.tokenGetter.getProjectRomeToken(resource: eventArgs.request.scopes.first!, userId: (account?.username)!, completion: {
                 (token: String?, error: Error?) in
                 guard let accessToken = token, error == nil else {
                     eventArgs.request.completeWithErrorMessage("Could not get token: \(error!)")
@@ -132,11 +124,9 @@ class NotificationManager {
 
     // Attempts to process an incoming APNS notification as
     // a Project Rome notification
-    public func processNotification(userInfo: [AnyHashable: Any]) {
+    public func processNotification(userInfo: [AnyHashable: Any]) -> Bool {
         let operation = platform.processNotification(userInfo)
-        if !operation.isConnectedDevicesNotification {
-            print ("Notification not from Graph")
-        }
+        return operation.isConnectedDevicesNotification
     }
 
     // Read the incoming notification feed
