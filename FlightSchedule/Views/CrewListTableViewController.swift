@@ -1,27 +1,20 @@
 //
-//  FlightScheduleViewController.swift
+//  CrewListTableViewController.swift
 //  FlightSchedule
 //
-//  Copyright (c) Microsoft. All rights reserved.
-//  Licensed under the MIT license. See LICENSE.txt in the project root for license information.
+//  Created by Jason Johnston on 3/27/19.
+//  Copyright © 2019 Jason Johnston. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class FlightScheduleViewController: UITableViewController {
-    
-    private let tableCellIdentifier = "ScheduleCell"
-    var flights: [GraphEvent]?
+class CrewListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // TODO: Get the crew users in a batch and set
+        // an array
     }
 
     // MARK: - Table view data source
@@ -33,32 +26,18 @@ class FlightScheduleViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return flights?.count ?? 0
+        return 7
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! FlightScheduleViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CrewListCell", for: indexPath) as! CrewListViewCell
 
-        let flight = flights?[indexPath.row]
-        
-        // Configure the cell...
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        
-        cell.flightName = flight?.subject
-        cell.departureTime = formatter.string(from: (flight?.start)!)
-        cell.flightId = flight?.id
-        
+        cell.crewMemberName = "Pradeep Gupta"
+        cell.crewMemberTitle = "Flight Attendant"
+        cell.crewMemberMobileNumber = "(452) 555-1212"
+        cell.crewMemberPhoto = UIImage(named: "default-photo")
+
         return cell
-    }
-    
-    public func setFlights(flights: [GraphEvent]) {
-        self.flights = flights
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 
     /*
@@ -71,7 +50,7 @@ class FlightScheduleViewController: UITableViewController {
 
     /*
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -96,19 +75,14 @@ class FlightScheduleViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let detailVC = segue.destination as? FlightDetailViewController {
-            let tappedCell = sender as? FlightScheduleViewCell
-            
-            detailVC.flightId = tappedCell?.flightId
-        }
     }
- 
+    */
 
 }

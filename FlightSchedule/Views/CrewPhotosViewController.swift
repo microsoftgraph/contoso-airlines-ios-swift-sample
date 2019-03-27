@@ -62,7 +62,17 @@ class CrewPhotosViewController: UICollectionViewController {
     
         return cell
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let cellCount = crewPhotos?.count ?? 0
+        let totalCellWidth = 40 * cellCount
+        let totalSpacingWidth = cellCount == 0 ? 0 : 10 * (cellCount - 1)
+        
+        let leftInset = (collectionView.layer.frame.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+    }
     // MARK: UICollectionViewDelegate
 
     /*
@@ -94,4 +104,8 @@ class CrewPhotosViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension CrewPhotosViewController : UICollectionViewDelegateFlowLayout {
+    
 }

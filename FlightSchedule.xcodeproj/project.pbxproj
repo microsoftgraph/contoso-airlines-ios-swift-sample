@@ -24,25 +24,28 @@
 		965B15EE222ED16B006F398D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965B15EC222ED16B006F398D /* Main.storyboard */; };
 		965B15F0222ED17E006F398D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 965B15EF222ED17E006F398D /* Assets.xcassets */; };
 		965B15F3222ED17F006F398D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965B15F1222ED17F006F398D /* LaunchScreen.storyboard */; };
+		968F5112224BDEB4002FBB30 /* CrewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F5111224BDEB4002FBB30 /* CrewListTableViewController.swift */; };
+		968F5114224BE018002FBB30 /* CrewListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F5113224BE018002FBB30 /* CrewListViewCell.swift */; };
+		968F511A224BE5D1002FBB30 /* ProjectRomeTokens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */; };
+		968F511B224BE5D1002FBB30 /* ProjectRomeTokens.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		968F511E224BE5DE002FBB30 /* ADAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968F511D224BE5DE002FBB30 /* ADAL.framework */; };
+		968F511F224BE5DE002FBB30 /* ADAL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 968F511D224BE5DE002FBB30 /* ADAL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96E301CE2230004A00744ABF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CD2230004A00744ABF /* NotificationManager.swift */; };
 		96E301D02230372D00744ABF /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CF2230372D00744ABF /* AuthenticationManager.swift */; };
 		96E301D522304C4E00744ABF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301D422304C4E00744ABF /* MainViewController.swift */; };
-		96EE3C21224A825A00BE01D3 /* ProjectRomeTokens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */; };
-		96EE3C22224A825A00BE01D3 /* ProjectRomeTokens.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		96EE3C25224A841200BE01D3 /* ADAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C24224A841200BE01D3 /* ADAL.framework */; };
-		96EE3C26224A841200BE01D3 /* ADAL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE3C24224A841200BE01D3 /* ADAL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96EE3C28224AA83500BE01D3 /* FlightDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE3C27224AA83500BE01D3 /* FlightDetailViewController.swift */; };
 		C21EC19922059BB07BFF65F6 /* Pods_FlightSchedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8A615F090F053778B5A7B5 /* Pods_FlightSchedule.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		96EE3C23224A825A00BE01D3 /* Embed Frameworks */ = {
+		968F511C224BE5D1002FBB30 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				96EE3C26224A841200BE01D3 /* ADAL.framework in Embed Frameworks */,
-				96EE3C22224A825A00BE01D3 /* ProjectRomeTokens.framework in Embed Frameworks */,
+				968F511F224BE5DE002FBB30 /* ADAL.framework in Embed Frameworks */,
+				968F511B224BE5D1002FBB30 /* ProjectRomeTokens.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,11 +75,14 @@
 		965B15F2222ED17F006F398D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		965B15F4222ED17F006F398D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		965B15FA222ED517006F398D /* FlightSchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlightSchedule.entitlements; sourceTree = "<group>"; };
+		968F5111224BDEB4002FBB30 /* CrewListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewListTableViewController.swift; sourceTree = "<group>"; };
+		968F5113224BE018002FBB30 /* CrewListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewListViewCell.swift; sourceTree = "<group>"; };
+		968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProjectRomeTokens.framework; sourceTree = "<group>"; };
+		968F511D224BE5DE002FBB30 /* ADAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ADAL.framework; sourceTree = "<group>"; };
 		96E301CD2230004A00744ABF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		96E301CF2230372D00744ABF /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		96E301D422304C4E00744ABF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProjectRomeTokens.framework; sourceTree = "<group>"; };
-		96EE3C24224A841200BE01D3 /* ADAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ADAL.framework; sourceTree = "<group>"; };
+		96EE3C27224AA83500BE01D3 /* FlightDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailViewController.swift; sourceTree = "<group>"; };
 		B77DAAE761D362AA986C7A46 /* Pods-FlightSchedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightSchedule.debug.xcconfig"; path = "Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,8 +92,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C21EC19922059BB07BFF65F6 /* Pods_FlightSchedule.framework in Frameworks */,
-				96EE3C25224A841200BE01D3 /* ADAL.framework in Frameworks */,
-				96EE3C21224A825A00BE01D3 /* ProjectRomeTokens.framework in Frameworks */,
+				968F511E224BE5DE002FBB30 /* ADAL.framework in Frameworks */,
+				968F511A224BE5D1002FBB30 /* ProjectRomeTokens.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +120,9 @@
 				962086262238225A00D8A821 /* NextFlightCardView.swift */,
 				962086282238343D00D8A821 /* FlightScheduleViewController.swift */,
 				9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */,
+				96EE3C27224AA83500BE01D3 /* FlightDetailViewController.swift */,
+				968F5111224BDEB4002FBB30 /* CrewListTableViewController.swift */,
+				968F5113224BE018002FBB30 /* CrewListViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -155,8 +164,8 @@
 		965B15DC222ED16B006F398D = {
 			isa = PBXGroup;
 			children = (
-				96EE3C24224A841200BE01D3 /* ADAL.framework */,
-				96EE3C20224A825A00BE01D3 /* ProjectRomeTokens.framework */,
+				968F511D224BE5DE002FBB30 /* ADAL.framework */,
+				968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */,
 				965B15E7222ED16B006F398D /* FlightSchedule */,
 				965B15E6222ED16B006F398D /* Products */,
 				DC7DEE6A1E265862E195550D /* Pods */,
@@ -220,7 +229,7 @@
 				965B15E2222ED16B006F398D /* Frameworks */,
 				965B15E3222ED16B006F398D /* Resources */,
 				23594F1887BFBF9639098AF9 /* [CP] Embed Pods Frameworks */,
-				96EE3C23224A825A00BE01D3 /* Embed Frameworks */,
+				968F511C224BE5D1002FBB30 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -346,15 +355,18 @@
 			files = (
 				963D5E7D2232F8CC003BA02C /* GraphManager.swift in Sources */,
 				96E301CE2230004A00744ABF /* NotificationManager.swift in Sources */,
+				96EE3C28224AA83500BE01D3 /* FlightDetailViewController.swift in Sources */,
 				962086252238029000D8A821 /* CrewPhotosViewController.swift in Sources */,
 				962086292238343D00D8A821 /* FlightScheduleViewController.swift in Sources */,
 				963D5E912236BB68003BA02C /* AppConfig.swift in Sources */,
 				96E301D02230372D00744ABF /* AuthenticationManager.swift in Sources */,
 				963D5E822233174D003BA02C /* GraphUser.swift in Sources */,
 				965B15EB222ED16B006F398D /* SignInViewController.swift in Sources */,
+				968F5114224BE018002FBB30 /* CrewListViewCell.swift in Sources */,
 				963D5E932236C44C003BA02C /* ProfilePhotoUtil.swift in Sources */,
 				965B15E9222ED16B006F398D /* AppDelegate.swift in Sources */,
 				96E301D522304C4E00744ABF /* MainViewController.swift in Sources */,
+				968F5112224BDEB4002FBB30 /* CrewListTableViewController.swift in Sources */,
 				963D5E8822331F55003BA02C /* SpinnerViewController.swift in Sources */,
 				963D5E952237E399003BA02C /* CrewPhotoCollectionViewCell.swift in Sources */,
 				9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */,

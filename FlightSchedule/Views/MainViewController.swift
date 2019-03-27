@@ -15,10 +15,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var nextFlightNumber: UILabel!
     @IBOutlet weak var nextFlightName: UILabel!
     @IBOutlet weak var nextFlightDeparture: UILabel!
+    @IBAction func unwindFromDetailView(unwindSegue: UIStoryboardSegue) {}
     
     var spinner: SpinnerViewController?
     var crewPhotosVC: CrewPhotosViewController?
     var flightScheduleVC: FlightScheduleViewController?
+    
+    var nextFlightId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +75,8 @@ class MainViewController: UIViewController {
             self.crewPhotosVC = crewPhotosVC
         case let flightScheduleVC as FlightScheduleViewController:
             self.flightScheduleVC = flightScheduleVC
+        case let flightDetailVC as FlightDetailViewController:
+            flightDetailVC.flightId = self.nextFlightId
         default:
             break;
         }
@@ -111,14 +116,37 @@ class MainViewController: UIViewController {
                 self.nextFlightName.text = nextFlight?.location
                 let departure = dateFormatter.string(from: (nextFlight?.start)!)
                 self.nextFlightDeparture.text = "Departs: \(departure)"
+                self.nextFlightId = nextFlight?.id
                 
                 GraphManager.instance.getUsersByEmail(emails: (nextFlight?.attendees)!, completion: {
                     (users: [GraphUser?]?, error: Error?) in
                     guard let crew = users, error == nil else {
+                        if error != nil {
+                            print("Error getting users from Graph: \(String(describing: error))")
+                        }
                         return
                     }
                     
+                    var crewIds: [String] = []
+                    crew.forEach({
+                        (user: GraphUser?) in
+                        guard let crewMember = user else {
+                            crewIds.append("")
+                            return
+                        }
+                        
+                        crewIds.append(crewMember.id!)
+                    })
                     
+                    ProfilePhotoUtil.instance.getUsersPhotos(userIds: crewIds, completion: {
+                        (crewPhotos: [UIImage?], error: Error?) in
+                        guard error == nil else {
+                            print("Error getting crew photos: \(String(describing: error))")
+                            return
+                        }
+                        
+                        self.crewPhotosVC?.setPhotos(photos: crewPhotos)
+                    })
                 })
                 
                 var remainingFlights = flights
@@ -134,5 +162,9 @@ class MainViewController: UIViewController {
     
     private func hideSpinner() {
         
+    }
+    
+    @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
+        print("Load detail for \(String(describing: nextFlightId))")
     }
 }

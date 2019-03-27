@@ -55,6 +55,9 @@ class ProfilePhotoUtil {
         
         // Load any cached images
         for (index, userId) in userIds.enumerated() {
+            if userId.isEmpty {
+                images[index] = UIImage(imageLiteralResourceName: "default-photo")
+            }
             let imagePath = "\(cachePath)/\(userId).png"
             let imageUrl = URL(fileURLWithPath: imagePath)
             
