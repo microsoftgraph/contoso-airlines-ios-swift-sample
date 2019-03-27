@@ -1,10 +1,10 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MSAL" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphClientSDK" "${PODS_ROOT}/ProjectRomeSdk"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MSAL" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphClientModels" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphClientSDK" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphMSALAuthProvider" "${PODS_ROOT}/ProjectRomeSdk"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MSAL/MSAL.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphClientSDK/MSGraphClientSDK.framework/Headers" $(inherited) "$(PODS_ROOT)/ProjectRomeSdk/ConnectedDevices.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MSAL/MSAL.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphClientModels/MSGraphClientModels.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphClientSDK/MSGraphClientSDK.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MSGraphMSALAuthProvider/MSGraphMSALAuthProvider.framework/Headers" $(inherited) "$(PODS_ROOT)/ProjectRomeSdk/ConnectedDevices.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
 OTHER_CFLAGS = $(inherited) -isystem "$(PODS_ROOT)/ProjectRomeSdk/ConnectedDevices.framework/Headers"
 OTHER_CPLUSPLUSFLAGS = $(inherited) -isystem "$(PODS_ROOT)/ProjectRomeSdk/ConnectedDevices.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "ConnectedDevices" -framework "MSAL" -framework "MSGraphClientSDK"
+OTHER_LDFLAGS = $(inherited) -framework "ConnectedDevices" -framework "MSAL" -framework "MSGraphClientModels" -framework "MSGraphClientSDK" -framework "MSGraphMSALAuthProvider"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

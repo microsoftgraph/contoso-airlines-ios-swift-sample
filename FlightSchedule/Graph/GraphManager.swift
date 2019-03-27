@@ -8,15 +8,19 @@
 
 import Foundation
 import MSGraphClientSDK
+import MSGraphMSALAuthProvider
 
 class GraphManager {
     static let instance = GraphManager()
     
-    private let authProvider: GraphAuthProvider?
+    //private let authProvider: GraphAuthProvider?
     private let client: MSHTTPClient?
     
     private init() {
-        authProvider = GraphAuthProvider()
+        let authProvider = MSALAuthenticationProvider(
+            publicClientApplication: AuthenticationManager.instance.getPublicClientApp(),
+            andScopes: AppConfig.scopes)
+        
         client = MSClientFactory.createHTTPClient(with: authProvider)
     }
     

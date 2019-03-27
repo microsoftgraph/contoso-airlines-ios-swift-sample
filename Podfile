@@ -7,5 +7,7 @@ target 'FlightSchedule' do
   pod 'ProjectRomeSdk'
   pod 'MSAL'
   pod 'MSGraphClientSDK'
+  pod 'MSGraphClientModels'
+  pod 'MSGraphMSALAuthProvider'
 
 end

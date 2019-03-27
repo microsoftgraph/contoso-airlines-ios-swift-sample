@@ -154,12 +154,16 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MSAL/MSAL.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MSGraphClientModels/MSGraphClientModels.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MSGraphClientSDK/MSGraphClientSDK.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MSGraphMSALAuthProvider/MSGraphMSALAuthProvider.framework"
   install_framework "${PODS_ROOT}/ProjectRomeSdk/ConnectedDevices.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MSAL/MSAL.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MSGraphClientModels/MSGraphClientModels.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MSGraphClientSDK/MSGraphClientSDK.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MSGraphMSALAuthProvider/MSGraphMSALAuthProvider.framework"
   install_framework "${PODS_ROOT}/ProjectRomeSdk/ConnectedDevices.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

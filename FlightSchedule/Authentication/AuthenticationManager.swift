@@ -160,4 +160,8 @@ class AuthenticationManager {
                 completion(tokenResult.accessToken, nil)
         })
     }
+    
+    public func getPublicClientApp() -> MSALPublicClientApplication? {
+        return publicClient
+    }
 }

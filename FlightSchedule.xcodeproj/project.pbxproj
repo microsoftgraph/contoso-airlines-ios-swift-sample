@@ -13,7 +13,6 @@
 		962086292238343D00D8A821 /* FlightScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086282238343D00D8A821 /* FlightScheduleViewController.swift */; };
 		9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */; };
 		963D5E7D2232F8CC003BA02C /* GraphManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E7C2232F8CC003BA02C /* GraphManager.swift */; };
-		963D5E7F22330267003BA02C /* GraphAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E7E22330267003BA02C /* GraphAuthProvider.swift */; };
 		963D5E822233174D003BA02C /* GraphUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E812233174D003BA02C /* GraphUser.swift */; };
 		963D5E8822331F55003BA02C /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E8722331F55003BA02C /* SpinnerViewController.swift */; };
 		963D5E912236BB68003BA02C /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E902236BB68003BA02C /* AppConfig.swift */; };
@@ -61,7 +60,6 @@
 		962086282238343D00D8A821 /* FlightScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightScheduleViewController.swift; sourceTree = "<group>"; };
 		9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightScheduleViewCell.swift; sourceTree = "<group>"; };
 		963D5E7C2232F8CC003BA02C /* GraphManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphManager.swift; sourceTree = "<group>"; };
-		963D5E7E22330267003BA02C /* GraphAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphAuthProvider.swift; sourceTree = "<group>"; };
 		963D5E812233174D003BA02C /* GraphUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphUser.swift; sourceTree = "<group>"; };
 		963D5E8722331F55003BA02C /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		963D5E902236BB68003BA02C /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				963D5E7C2232F8CC003BA02C /* GraphManager.swift */,
-				963D5E7E22330267003BA02C /* GraphAuthProvider.swift */,
 				963D5E922236C44C003BA02C /* ProfilePhotoUtil.swift */,
 			);
 			path = Graph;
@@ -308,7 +305,9 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MSAL/MSAL.framework",
+				"${BUILT_PRODUCTS_DIR}/MSGraphClientModels/MSGraphClientModels.framework",
 				"${BUILT_PRODUCTS_DIR}/MSGraphClientSDK/MSGraphClientSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/MSGraphMSALAuthProvider/MSGraphMSALAuthProvider.framework",
 				"${PODS_ROOT}/ProjectRomeSdk/ConnectedDevices.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -316,7 +315,9 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSAL.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphClientModels.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphClientSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphMSALAuthProvider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ConnectedDevices.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,7 +372,6 @@
 				963D5E952237E399003BA02C /* CrewPhotoCollectionViewCell.swift in Sources */,
 				9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */,
 				9604F9FF2239847E00ED98F1 /* GraphEvent.swift in Sources */,
-				963D5E7F22330267003BA02C /* GraphAuthProvider.swift in Sources */,
 				962086272238225A00D8A821 /* NextFlightCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
