@@ -9,6 +9,7 @@
 import Foundation
 import MSGraphClientSDK
 import MSGraphMSALAuthProvider
+import MSGraphClientModels
 
 class GraphManager {
     static let instance = GraphManager()
@@ -25,7 +26,7 @@ class GraphManager {
     }
     
     // Gets the logged-in user
-    public func getMe(completion: @escaping(GraphUser?, Error?)->Void) {
+    public func getMe(completion: @escaping(MSGraphUser?, Error?)->Void) {
         // GET /me
         let meRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/me")!)
         let meDataTask = MSURLSessionDataTask(request: meRequest, client: client, completion: {
@@ -36,8 +37,9 @@ class GraphManager {
             }
             
             do {
-                let me = try JSONSerialization.jsonObject(with: meData, options: JSONSerialization.ReadingOptions.mutableContainers)
-                let user = GraphUser(json: (me as? [String: Any])!)
+                //let me = try JSONSerialization.jsonObject(with: meData, options: JSONSerialization.ReadingOptions.mutableContainers)
+                //let user = GraphUser(json: (me as? [String: Any])!)
+                let user = try MSGraphUser(data: meData)
                 completion(user, nil)
             } catch {
                 completion(nil, error)
@@ -150,7 +152,7 @@ class GraphManager {
     }
     
     // Gets the logged-in user's calendar view
-    public func getCalendarView(start: Date, end: Date, completion: @escaping([GraphEvent]?, Error?)->Void) {
+    public func getCalendarView(start: Date, end: Date, completion: @escaping([MSGraphEvent]?, Error?)->Void) {
         let dateFormatter = ISO8601DateFormatter()
         let startISO = dateFormatter.string(from: start)
         let endISO = dateFormatter.string(from: end)
@@ -167,10 +169,21 @@ class GraphManager {
             }
             
             do {
-                let eventsJson = try JSONSerialization.jsonObject(with: calendarViewData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-                print("Events JSON: \(String(describing: eventsJson))")
-                let eventArray = eventsJson?["value"] as? [[String: Any]]
+                let eventsCollection = try MSCollection(data: calendarViewData)
+                var eventArray: [MSGraphEvent] = []
                 
+                eventsCollection.value.forEach({
+                    (rawEvent: Any) in
+                    guard let eventDict = rawEvent as? [String: Any] else {
+                        return
+                    }
+                    
+                    let event = MSGraphEvent(dictionary: eventDict)
+                    print("Event: \(String(describing: event!.subject))")
+                    eventArray.append(event!)
+                })
+                completion(eventArray, nil)
+                /*
                 var events: [GraphEvent] = []
                 if (eventArray != nil)
                 {
@@ -180,7 +193,7 @@ class GraphManager {
                         events.append(event!)
                     })
                 }
-                completion(events, nil)
+                completion(events, nil) */
             } catch {
                 completion(nil, error)
             }
@@ -190,7 +203,7 @@ class GraphManager {
     }
     
     // Looks up multiple users by email address and returns their user objects
-    public func getUsersByEmail(emails: [String], completion: @escaping([GraphUser?]?, Error?)->Void) {
+    public func getUsersByEmail(emails: [String], completion: @escaping([MSGraphUser?]?, Error?)->Void) {
         // Create batch request
         var batchSteps = [MSBatchRequestStep]()
         var stepId = 1
@@ -226,7 +239,7 @@ class GraphManager {
                 do {
                     let responseContent = try MSBatchResponseContent(batchResponseData: responseData, options: JSONSerialization.ReadingOptions.mutableContainers)
                     
-                    var users = [GraphUser?]()
+                    var users = [MSGraphUser?]()
                     
                     for i in 1...emails.count {
                         // Find each response in the batch response and map the
@@ -235,7 +248,7 @@ class GraphManager {
                         let userStatus = userResponse?["status"] as! Int
                         if (userStatus == 200) {
                             let userJson = userResponse?["body"] as? [String: Any]
-                            let user = GraphUser(json: userJson!)
+                            let user = MSGraphUser(dictionary: userJson)
                             users.append(user)
                         } else {
                             let userError = userResponse?["body"] as! NSDictionary?

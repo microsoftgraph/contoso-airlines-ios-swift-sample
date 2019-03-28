@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9604F9FF2239847E00ED98F1 /* GraphEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9604F9FE2239847E00ED98F1 /* GraphEvent.swift */; };
 		962086252238029000D8A821 /* CrewPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086242238028F00D8A821 /* CrewPhotosViewController.swift */; };
 		962086272238225A00D8A821 /* NextFlightCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086262238225A00D8A821 /* NextFlightCardView.swift */; };
 		962086292238343D00D8A821 /* FlightScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086282238343D00D8A821 /* FlightScheduleViewController.swift */; };
 		9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */; };
 		963D5E7D2232F8CC003BA02C /* GraphManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E7C2232F8CC003BA02C /* GraphManager.swift */; };
-		963D5E822233174D003BA02C /* GraphUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E812233174D003BA02C /* GraphUser.swift */; };
 		963D5E8822331F55003BA02C /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E8722331F55003BA02C /* SpinnerViewController.swift */; };
 		963D5E912236BB68003BA02C /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E902236BB68003BA02C /* AppConfig.swift */; };
 		963D5E932236C44C003BA02C /* ProfilePhotoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E922236C44C003BA02C /* ProfilePhotoUtil.swift */; };
@@ -29,6 +27,7 @@
 		968F511B224BE5D1002FBB30 /* ProjectRomeTokens.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		968F511E224BE5DE002FBB30 /* ADAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968F511D224BE5DE002FBB30 /* ADAL.framework */; };
 		968F511F224BE5DE002FBB30 /* ADAL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 968F511D224BE5DE002FBB30 /* ADAL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96B1706D224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B1706C224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift */; };
 		96E301CE2230004A00744ABF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CD2230004A00744ABF /* NotificationManager.swift */; };
 		96E301D02230372D00744ABF /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CF2230372D00744ABF /* AuthenticationManager.swift */; };
 		96E301D522304C4E00744ABF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301D422304C4E00744ABF /* MainViewController.swift */; };
@@ -54,13 +53,11 @@
 /* Begin PBXFileReference section */
 		0C519944915FF3EBBE0BF988 /* Pods-FlightSchedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightSchedule.release.xcconfig"; path = "Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule.release.xcconfig"; sourceTree = "<group>"; };
 		5E8A615F090F053778B5A7B5 /* Pods_FlightSchedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightSchedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9604F9FE2239847E00ED98F1 /* GraphEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphEvent.swift; sourceTree = "<group>"; };
 		962086242238028F00D8A821 /* CrewPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPhotosViewController.swift; sourceTree = "<group>"; };
 		962086262238225A00D8A821 /* NextFlightCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextFlightCardView.swift; sourceTree = "<group>"; };
 		962086282238343D00D8A821 /* FlightScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightScheduleViewController.swift; sourceTree = "<group>"; };
 		9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightScheduleViewCell.swift; sourceTree = "<group>"; };
 		963D5E7C2232F8CC003BA02C /* GraphManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphManager.swift; sourceTree = "<group>"; };
-		963D5E812233174D003BA02C /* GraphUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphUser.swift; sourceTree = "<group>"; };
 		963D5E8722331F55003BA02C /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		963D5E902236BB68003BA02C /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		963D5E922236C44C003BA02C /* ProfilePhotoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoUtil.swift; sourceTree = "<group>"; };
@@ -77,6 +74,7 @@
 		968F5113224BE018002FBB30 /* CrewListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewListViewCell.swift; sourceTree = "<group>"; };
 		968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProjectRomeTokens.framework; sourceTree = "<group>"; };
 		968F511D224BE5DE002FBB30 /* ADAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ADAL.framework; sourceTree = "<group>"; };
+		96B1706C224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFromMSGraphDateTimeTimeZone.swift; sourceTree = "<group>"; };
 		96E301CD2230004A00744ABF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		96E301CF2230372D00744ABF /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		96E301D422304C4E00744ABF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -101,8 +99,6 @@
 		963D5E8022331732003BA02C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				963D5E812233174D003BA02C /* GraphUser.swift */,
-				9604F9FE2239847E00ED98F1 /* GraphEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,6 +142,7 @@
 			children = (
 				963D5E7C2232F8CC003BA02C /* GraphManager.swift */,
 				963D5E922236C44C003BA02C /* ProfilePhotoUtil.swift */,
+				96B1706C224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -358,10 +355,10 @@
 				96E301CE2230004A00744ABF /* NotificationManager.swift in Sources */,
 				96EE3C28224AA83500BE01D3 /* FlightDetailViewController.swift in Sources */,
 				962086252238029000D8A821 /* CrewPhotosViewController.swift in Sources */,
+				96B1706D224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift in Sources */,
 				962086292238343D00D8A821 /* FlightScheduleViewController.swift in Sources */,
 				963D5E912236BB68003BA02C /* AppConfig.swift in Sources */,
 				96E301D02230372D00744ABF /* AuthenticationManager.swift in Sources */,
-				963D5E822233174D003BA02C /* GraphUser.swift in Sources */,
 				965B15EB222ED16B006F398D /* SignInViewController.swift in Sources */,
 				968F5114224BE018002FBB30 /* CrewListViewCell.swift in Sources */,
 				963D5E932236C44C003BA02C /* ProfilePhotoUtil.swift in Sources */,
@@ -371,7 +368,6 @@
 				963D5E8822331F55003BA02C /* SpinnerViewController.swift in Sources */,
 				963D5E952237E399003BA02C /* CrewPhotoCollectionViewCell.swift in Sources */,
 				9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */,
-				9604F9FF2239847E00ED98F1 /* GraphEvent.swift in Sources */,
 				962086272238225A00D8A821 /* NextFlightCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

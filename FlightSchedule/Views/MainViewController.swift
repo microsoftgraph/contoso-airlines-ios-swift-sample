@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MSGraphClientModels
 
 class MainViewController: UIViewController {
     
@@ -34,7 +35,7 @@ class MainViewController: UIViewController {
         
         // Get the logged-in user
         GraphManager.instance.getMe {
-            (user: GraphUser?, error: Error?) in
+            (user: MSGraphUser?, error: Error?) in
             guard let me = user, error == nil else {
                 print("Error getting user: \(error!)")
                 self.updateUserInfo(name: "", profilePhoto: nil)
@@ -42,7 +43,7 @@ class MainViewController: UIViewController {
             }
             
             // Get the user's photo
-            ProfilePhotoUtil.instance.getUserPhoto(userId: me.id!, completion: {
+            ProfilePhotoUtil.instance.getUserPhoto(userId: me.entityId, completion: {
                 (image: UIImage?, photoError: Error?) in
                 guard let userPhoto = image, photoError == nil else {
                     print("Error getting photo: \(photoError!)")
@@ -56,7 +57,7 @@ class MainViewController: UIViewController {
                 let end = Calendar.current.date(byAdding: .day, value: 30, to: start)
                 
                 GraphManager.instance.getCalendarView(start: start, end: end!, completion: {
-                    (events: [GraphEvent]?, error: Error?) in
+                    (events: [MSGraphEvent]?, error: Error?) in
                     guard let flights = events, error == nil else {
                         return
                     }
@@ -103,7 +104,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    private func updateFlights(flights: [GraphEvent]) {
+    private func updateFlights(flights: [MSGraphEvent]) {
         DispatchQueue.main.async {
             if (flights.count > 0) {
                 let nextFlight = flights.first
@@ -112,14 +113,34 @@ class MainViewController: UIViewController {
                 dateFormatter.dateStyle = .medium
                 dateFormatter.timeStyle = .short
                 
-                self.nextFlightNumber.text = nextFlight?.subject
-                self.nextFlightName.text = nextFlight?.location
-                let departure = dateFormatter.string(from: (nextFlight?.start)!)
-                self.nextFlightDeparture.text = "Departs: \(departure)"
-                self.nextFlightId = nextFlight?.id
+                print("Event subject: \(String(describing: nextFlight?.subject))")
+                print("Event start: \(String(describing: nextFlight?.start?.dateTime))")
                 
-                GraphManager.instance.getUsersByEmail(emails: (nextFlight?.attendees)!, completion: {
-                    (users: [GraphUser?]?, error: Error?) in
+                self.nextFlightNumber.text = nextFlight?.subject
+                self.nextFlightName.text = nextFlight?.location?.displayName
+                
+                let startDate = Date(from: (nextFlight?.start)!)
+                let departure = dateFormatter.string(from: startDate)
+                self.nextFlightDeparture.text = "Departs: \(departure)"
+                self.nextFlightId = nextFlight?.entityId
+                
+                print("Attendees: \(String(describing: nextFlight?.attendees))")
+                
+                var attendees: [String] = []
+                nextFlight?.attendees?.forEach({
+                    (rawAttendee: Any) in
+                    guard let attendeeDict = rawAttendee as? [String: Any] else {
+                        return
+                    }
+                    
+                    do {
+                        let attendee = MSGraphAttendee(dictionary: attendeeDict)
+                        attendees.append((attendee?.emailAddress!.address)!)
+                    }
+                })
+                
+                GraphManager.instance.getUsersByEmail(emails: attendees, completion: {
+                    (users: [MSGraphUser?]?, error: Error?) in
                     guard let crew = users, error == nil else {
                         if error != nil {
                             print("Error getting users from Graph: \(String(describing: error))")
@@ -129,13 +150,13 @@ class MainViewController: UIViewController {
                     
                     var crewIds: [String] = []
                     crew.forEach({
-                        (user: GraphUser?) in
+                        (user: MSGraphUser?) in
                         guard let crewMember = user else {
                             crewIds.append("")
                             return
                         }
                         
-                        crewIds.append(crewMember.id!)
+                        crewIds.append(crewMember.entityId)
                     })
                     
                     ProfilePhotoUtil.instance.getUsersPhotos(userIds: crewIds, completion: {
@@ -152,6 +173,7 @@ class MainViewController: UIViewController {
                 var remainingFlights = flights
                 remainingFlights.removeFirst()
                 self.flightScheduleVC?.setFlights(flights: remainingFlights)
+ 
             }
         }
     }

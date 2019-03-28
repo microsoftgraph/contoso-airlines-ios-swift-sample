@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import MSGraphClientModels
 
 class FlightScheduleViewController: UITableViewController {
     
     private let tableCellIdentifier = "ScheduleCell"
-    var flights: [GraphEvent]?
+    var flights: [MSGraphEvent]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,13 +49,13 @@ class FlightScheduleViewController: UITableViewController {
         formatter.timeStyle = .short
         
         cell.flightName = flight?.subject
-        cell.departureTime = formatter.string(from: (flight?.start)!)
-        cell.flightId = flight?.id
+        cell.departureTime = formatter.string(from: Date(from: flight!.start!))
+        cell.flightId = flight?.entityId
         
         return cell
     }
     
-    public func setFlights(flights: [GraphEvent]) {
+    public func setFlights(flights: [MSGraphEvent]) {
         self.flights = flights
         DispatchQueue.main.async {
             self.tableView.reloadData()
