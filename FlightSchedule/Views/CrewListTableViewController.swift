@@ -7,14 +7,43 @@
 //
 
 import UIKit
+import MSGraphClientModels
 
 class CrewListTableViewController: UITableViewController {
 
+    var crewIds: [String]? {
+        didSet {
+            guard let userIds = crewIds else {
+                return
+            }
+            
+            GraphManager.instance.getUserPhotosBatch(userIds: userIds) {
+                (images: [UIImage?]?, error: Error?) in
+                if (error != nil) {
+                    print("Error getting crew photos: \(String(describing: error))")
+                }
+                self.crewPhotos = images
+                
+                GraphManager.instance.getUsersByIds(identifiers: self.crewIds!, completion: {
+                    (users: [MSGraphUser?]?, error: Error?) in
+                    if (error != nil) {
+                        print("Error getting crew members: \(String(describing: error))")
+                    }
+                    self.crewMembers = users
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                })
+            }
+        }
+    }
+    
+    var crewPhotos: [UIImage?]?
+    var crewMembers: [MSGraphUser?]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // TODO: Get the crew users in a batch and set
-        // an array
     }
 
     // MARK: - Table view data source
@@ -26,16 +55,21 @@ class CrewListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 7
+        return crewMembers?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CrewListCell", for: indexPath) as! CrewListViewCell
-
-        cell.crewMemberName = "Pradeep Gupta"
-        cell.crewMemberTitle = "Flight Attendant"
-        cell.crewMemberMobileNumber = "(452) 555-1212"
-        cell.crewMemberPhoto = UIImage(named: "default-photo")
+        
+        let crewMember = crewMembers![indexPath.row]
+        
+        cell.crewMemberName = crewMember?.displayName
+        cell.crewMemberTitle = crewMember?.jobTitle ?? "Flight Attendant"
+        cell.crewMemberMobileNumber = crewMember?.mobilePhone
+        
+        let crewPhoto = crewPhotos![indexPath.row]
+        
+        cell.crewMemberPhoto = crewPhoto ?? UIImage(named: "default-photo")
 
         return cell
     }
@@ -75,14 +109,6 @@ class CrewListTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

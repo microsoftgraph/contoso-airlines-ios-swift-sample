@@ -12,7 +12,8 @@ class CrewListViewCell: UITableViewCell {
     @IBOutlet weak var photoView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var mobileNumberLabel: UILabel!
+    @IBOutlet weak var textButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
     
     var crewMemberPhoto: UIImage? {
         didSet {
@@ -34,7 +35,11 @@ class CrewListViewCell: UITableViewCell {
     
     var crewMemberMobileNumber: String? {
         didSet {
-            mobileNumberLabel.text = crewMemberMobileNumber
+            guard let mobileNumber = crewMemberMobileNumber else { return }
+            if !mobileNumber.isEmpty {
+                textButton.isHidden = false
+                callButton.isHidden = false
+            }
         }
     }
     

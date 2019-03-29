@@ -158,9 +158,15 @@ class GraphManager {
         let endISO = dateFormatter.string(from: end)
         
         // GET /me/calendarview?startDateTime={start}&endDateTime={end}&
-        // $select=subject,location,start,end,attendees&
+        // $select=subject,location,start,end&
+        // $filter=categories/any(a:a eq 'Assigned Flight')&
+        // $expand=extensions($filter=id eq 'com.contoso.flightData')&
         // $orderby=start/dateTime
-        let calendarViewRequest = NSMutableURLRequest(url: URL(string: "\(MSGraphBaseURL)/me/calendarview?startDateTime=\(startISO)&endDateTime=\(endISO)&$select=subject,location,start,end,attendees&orderby=start/dateTime")!)
+        let queryString = "startDateTime=\(startISO)&endDateTime=\(endISO)&$select=subject,location,start,end&$filter=categories/any(a:a+eq+'Assigned+Flight')&$expand=extensions($filter=id+eq+'com.contoso.flightData')&orderby=start/dateTime"
+        let requestUrlString = "\(MSGraphBaseURL)/me/calendarview?\(queryString)"
+        let requestUrl = URL(string: requestUrlString)
+        
+        let calendarViewRequest = NSMutableURLRequest(url: requestUrl!)
         let calendarViewDataTask = MSURLSessionDataTask(request: calendarViewRequest, client: client, completion: {
             (data: Data?, response: URLResponse?, graphError: Error?) in
             guard let calendarViewData = data, graphError == nil else {
@@ -183,17 +189,6 @@ class GraphManager {
                     eventArray.append(event!)
                 })
                 completion(eventArray, nil)
-                /*
-                var events: [GraphEvent] = []
-                if (eventArray != nil)
-                {
-                    eventArray?.forEach({
-                        (eventObj: [String : Any]) in
-                        let event = GraphEvent(json: eventObj)
-                        events.append(event!)
-                    })
-                }
-                completion(events, nil) */
             } catch {
                 completion(nil, error)
             }
@@ -202,13 +197,18 @@ class GraphManager {
         calendarViewDataTask?.execute()
     }
     
-    // Looks up multiple users by email address and returns their user objects
-    public func getUsersByEmail(emails: [String], completion: @escaping([MSGraphUser?]?, Error?)->Void) {
+    // Looks up multiple users by id and returns their user objects
+    public func getUsersByIds(identifiers: [String], completion: @escaping([MSGraphUser?]?, Error?)->Void) {
         // Create batch request
         var batchSteps = [MSBatchRequestStep]()
         var stepId = 1
         
-        emails.forEach {
+        if identifiers.count == 0 {
+            completion(nil, nil)
+            return
+        }
+        
+        identifiers.forEach {
             (email: String) in
             // GET /users/{email}
             let userRequest = NSMutableURLRequest(url: URL(string: "/users/\(email)")!)
@@ -241,9 +241,9 @@ class GraphManager {
                     
                     var users = [MSGraphUser?]()
                     
-                    for i in 1...emails.count {
+                    for i in 1...identifiers.count {
                         // Find each response in the batch response and map the
-                        // returned user to the email
+                        // returned user in the array
                         let userResponse = responseContent.getResponseById("\(i)") as NSDictionary?
                         let userStatus = userResponse?["status"] as! Int
                         if (userStatus == 200) {

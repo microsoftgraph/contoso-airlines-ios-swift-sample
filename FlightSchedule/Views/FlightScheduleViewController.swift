@@ -17,12 +17,6 @@ class FlightScheduleViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -50,7 +44,7 @@ class FlightScheduleViewController: UITableViewController {
         
         cell.flightName = flight?.subject
         cell.departureTime = formatter.string(from: Date(from: flight!.start!))
-        cell.flightId = flight?.entityId
+        cell.indexForCell = indexPath
         
         return cell
     }
@@ -107,7 +101,7 @@ class FlightScheduleViewController: UITableViewController {
         if let detailVC = segue.destination as? FlightDetailViewController {
             let tappedCell = sender as? FlightScheduleViewCell
             
-            detailVC.flightId = tappedCell?.flightId
+            detailVC.flight = flights?[(tappedCell?.indexForCell.row)!]
         }
     }
  

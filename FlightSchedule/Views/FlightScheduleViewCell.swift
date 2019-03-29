@@ -25,7 +25,7 @@ class FlightScheduleViewCell: UITableViewCell {
         }
     }
     
-    var flightId: String?
+    var indexForCell: IndexPath!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
     var crewPhotosVC: CrewPhotosViewController?
     var flightScheduleVC: FlightScheduleViewController?
     
-    var nextFlightId: String?
+    var nextFlight: MSGraphEvent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
         case let flightScheduleVC as FlightScheduleViewController:
             self.flightScheduleVC = flightScheduleVC
         case let flightDetailVC as FlightDetailViewController:
-            flightDetailVC.flightId = self.nextFlightId
+            flightDetailVC.flight = self.nextFlight
         default:
             break;
         }
@@ -122,52 +122,18 @@ class MainViewController: UIViewController {
                 let startDate = Date(from: (nextFlight?.start)!)
                 let departure = dateFormatter.string(from: startDate)
                 self.nextFlightDeparture.text = "Departs: \(departure)"
-                self.nextFlightId = nextFlight?.entityId
+                self.nextFlight = nextFlight
                 
-                print("Attendees: \(String(describing: nextFlight?.attendees))")
+                let flightData = FlightDataEventExtension(extensions: nextFlight!.extensions)
                 
-                var attendees: [String] = []
-                nextFlight?.attendees?.forEach({
-                    (rawAttendee: Any) in
-                    guard let attendeeDict = rawAttendee as? [String: Any] else {
+                ProfilePhotoUtil.instance.getUsersPhotos(userIds: (flightData?.crewMembers)!, completion: {
+                    (crewPhotos: [UIImage?], error: Error?) in
+                    guard error == nil else {
+                        print("Error getting crew photos: \(String(describing: error))")
                         return
                     }
                     
-                    do {
-                        let attendee = MSGraphAttendee(dictionary: attendeeDict)
-                        attendees.append((attendee?.emailAddress!.address)!)
-                    }
-                })
-                
-                GraphManager.instance.getUsersByEmail(emails: attendees, completion: {
-                    (users: [MSGraphUser?]?, error: Error?) in
-                    guard let crew = users, error == nil else {
-                        if error != nil {
-                            print("Error getting users from Graph: \(String(describing: error))")
-                        }
-                        return
-                    }
-                    
-                    var crewIds: [String] = []
-                    crew.forEach({
-                        (user: MSGraphUser?) in
-                        guard let crewMember = user else {
-                            crewIds.append("")
-                            return
-                        }
-                        
-                        crewIds.append(crewMember.entityId)
-                    })
-                    
-                    ProfilePhotoUtil.instance.getUsersPhotos(userIds: crewIds, completion: {
-                        (crewPhotos: [UIImage?], error: Error?) in
-                        guard error == nil else {
-                            print("Error getting crew photos: \(String(describing: error))")
-                            return
-                        }
-                        
-                        self.crewPhotosVC?.setPhotos(photos: crewPhotos)
-                    })
+                    self.crewPhotosVC?.setPhotos(photos: crewPhotos)
                 })
                 
                 var remainingFlights = flights
@@ -187,6 +153,6 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
-        print("Load detail for \(String(describing: nextFlightId))")
+        print("Load detail for \(String(describing: nextFlight))")
     }
 }

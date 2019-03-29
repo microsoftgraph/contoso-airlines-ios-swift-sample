@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MSGraphClientModels
 
 class FlightDetailViewController: UIViewController {
     @IBOutlet weak var flightNameLabel: UILabel!
@@ -14,7 +15,9 @@ class FlightDetailViewController: UIViewController {
     @IBOutlet weak var departureGateLabel: UILabel!
     @IBOutlet weak var departureTimeLabel: UILabel!
     
-    var flightId: String?
+    var crewListVC: CrewListTableViewController?
+    
+    var flight: MSGraphEvent?
     
     var flightName: String? {
         didSet {
@@ -46,23 +49,22 @@ class FlightDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("Showing detail for \(String(describing: flightId))")
-        // TODO: Get event by ID and populate the fields
-        flightName = "Flight 875"
-        flightDescription = "JAX to JFK"
-        departureGate = "C9"
-        departureTime = Date(timeIntervalSinceNow: 0)
+        flightName = flight?.subject
+        flightDescription = flight?.location?.displayName
+        departureTime = Date(from: (flight?.start)!)
+        
+        let flightData = FlightDataEventExtension(extensions: flight!.extensions)
+        departureGate = flightData?.departureGate
+        
+        crewListVC?.crewIds = flightData?.crewMembers
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segue.destination {
+        case let crewListVC as CrewListTableViewController:
+            self.crewListVC = crewListVC
+        default:
+            break;
+        }
     }
-    */
-
 }
