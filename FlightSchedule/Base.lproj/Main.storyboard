@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1n0-4r-IEa">
-                                <rect key="frame" x="199" y="313" width="16" height="22"/>
+                                <rect key="frame" x="92" y="397" width="230" height="40"/>
                                 <state key="normal" image="sign-in-with-microsoft"/>
                                 <connections>
                                     <action selector="signIn" destination="BYZ-38-t0r" eventType="touchUpInside" id="jxt-6y-14Y"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contoso Flight Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euz-Mf-2eI">
-                                <rect key="frame" x="80" y="234" width="254" height="29"/>
+                                <rect key="frame" x="80" y="318" width="254" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="JOL-4X-pW4"/>
                                 </constraints>
@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="d57-hw-1Fv">
-                                <rect key="frame" x="199" y="180" width="16" height="16"/>
+                                <rect key="frame" x="157" y="180" width="100" height="100"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.26266324520111084" green="0.56088769435882568" blue="0.99850016832351685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -272,13 +272,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMB-Uw-UNa">
-                                            <rect key="frame" x="20" y="11" width="199" height="21"/>
+                                            <rect key="frame" x="20" y="15" width="199" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Teq-Ef-5vd">
-                                            <rect key="frame" x="179" y="11" width="199" height="21"/>
+                                            <rect key="frame" x="179" y="15" width="199" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -286,13 +286,13 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Teq-Ef-5vd" firstAttribute="width" secondItem="FOD-Ci-enR" secondAttribute="width" multiplier="1:2" id="2dh-bZ-kJp"/>
+                                        <constraint firstItem="Teq-Ef-5vd" firstAttribute="top" secondItem="FOD-Ci-enR" secondAttribute="topMargin" constant="4" id="3h1-zH-Fje"/>
                                         <constraint firstItem="Teq-Ef-5vd" firstAttribute="trailing" secondItem="FOD-Ci-enR" secondAttribute="trailingMargin" id="dTq-k9-y9J"/>
                                         <constraint firstItem="pMB-Uw-UNa" firstAttribute="leading" secondItem="FOD-Ci-enR" secondAttribute="leadingMargin" id="eW7-sD-K7A"/>
                                         <constraint firstItem="Teq-Ef-5vd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FOD-Ci-enR" secondAttribute="leadingMargin" constant="157" id="giy-KM-KPO"/>
-                                        <constraint firstItem="pMB-Uw-UNa" firstAttribute="top" secondItem="FOD-Ci-enR" secondAttribute="topMargin" id="gwu-Ph-tA2"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pMB-Uw-UNa" secondAttribute="trailing" constant="177" id="h7y-of-A1i"/>
-                                        <constraint firstItem="Teq-Ef-5vd" firstAttribute="top" secondItem="FOD-Ci-enR" secondAttribute="topMargin" id="kR5-yu-ekV"/>
                                         <constraint firstItem="pMB-Uw-UNa" firstAttribute="width" secondItem="FOD-Ci-enR" secondAttribute="width" multiplier="1:2" id="mdh-uh-1w4"/>
+                                        <constraint firstItem="pMB-Uw-UNa" firstAttribute="top" secondItem="FOD-Ci-enR" secondAttribute="topMargin" constant="4" id="uMZ-X1-2Cp"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -317,7 +317,7 @@
             <objects>
                 <viewController storyboardIdentifier="FlightDetailView" id="yA0-jv-A47" customClass="FlightDetailViewController" customModule="FlightSchedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kM9-pL-j7y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="398" height="432"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9F-O9-BXC">
@@ -354,7 +354,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eI2-fI-LLT">
-                                <rect key="frame" x="20" y="240" width="374" height="622"/>
+                                <rect key="frame" x="20" y="240" width="358" height="158"/>
                                 <color key="backgroundColor" red="0.26263141629999998" green="0.55954325199999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="mE9-Kf-aQv" kind="embed" id="pSz-dH-yv2"/>
@@ -397,7 +397,7 @@
             <objects>
                 <tableViewController id="mE9-Kf-aQv" customClass="CrewListTableViewController" customModule="FlightSchedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ss3-XU-qjJ">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="622"/>
+                        <rect key="frame" x="0.0" y="0.0" width="358" height="158"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.26263141629999998" green="0.55954325199999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.26263141629999998" green="0.55954325199999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -406,10 +406,10 @@
                         <color key="sectionIndexTrackingBackgroundColor" red="0.26263141629999998" green="0.55954325199999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CrewListCell" rowHeight="132" id="vGd-Sl-z55" customClass="CrewListViewCell" customModule="FlightSchedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="374" height="132"/>
+                                <rect key="frame" x="0.0" y="28" width="358" height="132"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vGd-Sl-z55" id="PZ7-VD-Cba">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="132"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="358" height="132"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kyt-hl-6ux">
@@ -548,6 +548,6 @@
         <image name="sign-in-with-microsoft" width="230" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X1n-os-jqr"/>
+        <segue reference="RT6-Ag-uKK"/>
     </inferredMetricsTieBreakers>
 </document>
