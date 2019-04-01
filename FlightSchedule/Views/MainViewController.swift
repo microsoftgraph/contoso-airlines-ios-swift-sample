@@ -27,11 +27,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        spinner = SpinnerViewController()
-        addChild(spinner!)
-        spinner!.view.frame = view.frame
-        view.addSubview(spinner!.view)
-        spinner!.didMove(toParent: self)
+        showSpinner()
         
         // Get the logged-in user
         GraphManager.instance.getMe {
@@ -52,18 +48,8 @@ class MainViewController: UIViewController {
                 } 
                 self.updateUserInfo(name: me.displayName!, profilePhoto: userPhoto)
                 
-                // Get the users calendar for the next 30 days
-                let start = Calendar.current.startOfDay(for: Date())
-                let end = Calendar.current.date(byAdding: .day, value: 30, to: start)
-                
-                GraphManager.instance.getCalendarView(start: start, end: end!, completion: {
-                    (events: [MSGraphEvent]?, error: Error?) in
-                    guard let flights = events, error == nil else {
-                        return
-                    }
-                    
-                    self.updateFlights(flights: flights)
-                })
+                self.hideSpinner()
+                self.refreshFlights()
             })
         }
         
@@ -91,16 +77,28 @@ class MainViewController: UIViewController {
         appDelegate.showSignInView()
     }
     
+    @IBAction func refreshFlights() {
+        showSpinner()
+        // Get the users calendar for the next 30 days
+        let start = Calendar.current.startOfDay(for: Date())
+        let end = Calendar.current.date(byAdding: .day, value: 30, to: start)
+        
+        GraphManager.instance.getCalendarView(start: start, end: end!, completion: {
+            (events: [MSGraphEvent]?, error: Error?) in
+            guard let flights = events, error == nil else {
+                return
+            }
+            
+            self.updateFlights(flights: flights)
+        })
+    }
+    
     private func updateUserInfo(name: String, profilePhoto: UIImage?) {
         DispatchQueue.main.async {
             self.userLabel.text = name
             if (profilePhoto != nil) {
                 self.profilePictureView.image = profilePhoto
             }
-            
-            self.spinner!.willMove(toParent: nil)
-            self.spinner!.view.removeFromSuperview()
-            self.spinner!.removeFromParent()
         }
     }
     
@@ -134,6 +132,8 @@ class MainViewController: UIViewController {
                     }
                     
                     self.crewPhotosVC?.setPhotos(photos: crewPhotos)
+                    
+                    self.hideSpinner()
                 })
                 
                 var remainingFlights = flights
@@ -145,11 +145,21 @@ class MainViewController: UIViewController {
     }
     
     private func showSpinner() {
-        
+        DispatchQueue.main.async {
+            self.spinner = SpinnerViewController()
+            self.addChild(self.spinner!)
+            self.spinner!.view.frame = self.view.frame
+            self.view.addSubview(self.spinner!.view)
+            self.spinner!.didMove(toParent: self)
+        }
     }
     
     private func hideSpinner() {
-        
+        DispatchQueue.main.async {
+            self.spinner!.willMove(toParent: nil)
+            self.spinner!.view.removeFromSuperview()
+            self.spinner!.removeFromParent()
+        }
     }
     
     @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
