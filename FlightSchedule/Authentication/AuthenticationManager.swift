@@ -19,6 +19,7 @@ class AuthenticationManager {
     private init() {
         do {
             // Uncomment this block to enable MSAL logging
+            /*
             MSALLogger.shared().piiLoggingEnabled = true
             MSALLogger.shared().level = .verbose
             MSALLogger.shared().setCallback {
@@ -31,7 +32,7 @@ class AuthenticationManager {
                     print(logMessage)
                 }
             }
-            
+            */
 
             let authorityUrl = URL(string: "https://login.microsoftonline.com/\(AppConfig.tenantId)")!
             let authority = try MSALAuthority(url: authorityUrl)
@@ -115,50 +116,6 @@ class AuthenticationManager {
             print("No accounts in cache")
             completion(nil, NSError(domain: "AuthenticationManager", code: MSALErrorCode.accountRequired.rawValue, userInfo: nil))
         }
-    }
-
-    // Get a token for other resources
-    // Used for cross-device notification endpoints
-    public func getTokenWithScopes(scopes: [String], completion: @escaping(_ accessToken: String?, Error?) -> Void) {
-        let account = getAccount()
-
-        guard let userAccount = account else {
-            let error = NSError(domain: "AuthenticationManager", code: MSALErrorCode.accountRequired.rawValue, userInfo: nil)
-            completion(nil, error);
-            return;
-        }
-        /*
-        let adalClient = ADAuthenticationContext(authority: "https://login.microsoftonline.com/\(AppConfig.tenantId)", error: nil)
-        adalClient?.acquireTokenSilent(withResource: "https://wns.windows.com/", clientId: AppConfig.appId, redirectUri: URL(string: "urn:ietf:wg:oauth:2.0:oob"), userId: userAccount.username, completionBlock: {
-            (result: ADAuthenticationResult?) in
-            guard let authResult = result else {
-                print("ADAL returned no result??")
-                completion(nil, NSError(domain: "AuthenticationManager", code: ADErrorCode.ERROR_UNEXPECTED.rawValue, userInfo: nil))
-                return
-            }
-            
-            if authResult.status != AD_SUCCEEDED {
-                completion(nil, authResult.error)
-                return
-            }
-            
-            completion(authResult.accessToken, nil)
-        })
-         */
-        
-        publicClient?.acquireTokenSilent(
-            forScopes: scopes,
-            account: userAccount, completionBlock: {
-                (result: MSALResult?, error: Error?) in
-
-                guard let tokenResult = result, error == nil else {
-                    print("TOKEN ERROR: \(String(describing: error))")
-                    completion(nil, error)
-                    return
-                }
-
-                completion(tokenResult.accessToken, nil)
-        })
     }
     
     public func getPublicClientApp() -> MSALPublicClientApplication? {

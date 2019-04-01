@@ -95,7 +95,7 @@ class ProfilePhotoUtil {
                     let imagePath = "\(self.cachePath)/\(userId).png"
                     let imageUrl = URL(fileURLWithPath: imagePath)
                     print("Caching photo: \(imagePath)")
-                    try? photo!.pngData()?.write(to: imageUrl)
+                    try? photo?.pngData()?.write(to: imageUrl)
                 }
                 images[index] = userPhotos[userPhotoIndex]
                 userPhotoIndex += 1

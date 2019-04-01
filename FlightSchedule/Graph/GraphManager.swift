@@ -14,7 +14,6 @@ import MSGraphClientModels
 class GraphManager {
     static let instance = GraphManager()
     
-    //private let authProvider: GraphAuthProvider?
     private let client: MSHTTPClient?
     
     private init() {
@@ -37,8 +36,6 @@ class GraphManager {
             }
             
             do {
-                //let me = try JSONSerialization.jsonObject(with: meData, options: JSONSerialization.ReadingOptions.mutableContainers)
-                //let user = GraphUser(json: (me as? [String: Any])!)
                 let user = try MSGraphUser(data: meData)
                 completion(user, nil)
             } catch {
@@ -101,7 +98,7 @@ class GraphManager {
             batchRequest.httpMethod = "POST"
             batchRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            let bodyData = try JSONSerialization.data(withJSONObject: batchRequestContent.getBatchRequestContent(), options: JSONSerialization.WritingOptions.prettyPrinted)
+            let bodyData = try JSONSerialization.data(withJSONObject: batchRequestContent.getBatchRequestContent() as Any, options: JSONSerialization.WritingOptions.prettyPrinted)
             batchRequest.httpBody = bodyData
             
             let batchTask = MSURLSessionDataTask(request: batchRequest, client: client) {
@@ -225,7 +222,7 @@ class GraphManager {
             batchRequest.httpMethod = "POST"
             batchRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            let bodyData = try JSONSerialization.data(withJSONObject: batchRequestContent.getBatchRequestContent(), options: JSONSerialization.WritingOptions.prettyPrinted)
+            let bodyData = try JSONSerialization.data(withJSONObject: batchRequestContent.getBatchRequestContent() as Any, options: JSONSerialization.WritingOptions.prettyPrinted)
             batchRequest.httpBody = bodyData
             
             let batchTask = MSURLSessionDataTask(request: batchRequest, client: client) {

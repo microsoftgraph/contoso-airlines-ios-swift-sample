@@ -111,9 +111,6 @@ class MainViewController: UIViewController {
                 dateFormatter.dateStyle = .medium
                 dateFormatter.timeStyle = .short
                 
-                print("Event subject: \(String(describing: nextFlight?.subject))")
-                print("Event start: \(String(describing: nextFlight?.start?.dateTime))")
-                
                 self.nextFlightNumber.text = nextFlight?.subject
                 self.nextFlightName.text = nextFlight?.location?.displayName
                 
@@ -122,6 +119,7 @@ class MainViewController: UIViewController {
                 self.nextFlightDeparture.text = "Departs: \(departure)"
                 self.nextFlight = nextFlight
                 
+                // Get the flight data open extension
                 let flightData = FlightDataEventExtension(extensions: nextFlight!.extensions)
                 
                 ProfilePhotoUtil.instance.getUsersPhotos(userIds: (flightData?.crewMembers)!, completion: {
@@ -160,9 +158,5 @@ class MainViewController: UIViewController {
             self.spinner!.view.removeFromSuperview()
             self.spinner!.removeFromParent()
         }
-    }
-    
-    @IBAction func handleTap(recognizer: UITapGestureRecognizer) {
-        print("Load detail for \(String(describing: nextFlight))")
     }
 }
