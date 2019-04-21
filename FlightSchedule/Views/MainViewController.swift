@@ -86,6 +86,7 @@ class MainViewController: UIViewController {
         GraphManager.instance.getCalendarView(start: start, end: end!, completion: {
             (events: [MSGraphEvent]?, error: Error?) in
             guard let flights = events, error == nil else {
+                self.hideSpinner()
                 return
             }
             
@@ -138,6 +139,8 @@ class MainViewController: UIViewController {
                 remainingFlights.removeFirst()
                 self.flightScheduleVC?.setFlights(flights: remainingFlights)
  
+            } else {
+                self.hideSpinner()
             }
         }
     }

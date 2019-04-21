@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        //UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().delegate = self
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let account = AuthenticationManager.instance.getAccount()
@@ -94,10 +94,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Recieved remote notification")
         
         if NotificationManager.instance.processNotification(userInfo: userInfo) {
-            // Refresh flight list
+            print("Graph notification")
         } else {
             print("Not a Graph notification")
         }
+        
+        completionHandler(.noData)
     }
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -129,15 +131,15 @@ extension AppDelegate {
 }
 
 // Extension to tell app to be able to get notification when in use
-/*
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.alert)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("Notif response")
+        // When user taps on the notification, reload the main view
+        // This will refresh the view with current data
+        self.showMainView()
         completionHandler()
     }
 }
-*/

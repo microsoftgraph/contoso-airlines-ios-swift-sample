@@ -38,8 +38,6 @@ class NotificationManager {
         // Called by Project Rome SDK when it needs an access token
         platform.accountManager.accessTokenRequested.subscribe {
             (acctMgr, eventArgs) in
-
-            print("Original scopes: \(eventArgs.request.scopes)")
             
             let account = AuthenticationManager.instance.getAccount()
             
@@ -49,7 +47,7 @@ class NotificationManager {
                     eventArgs.request.completeWithErrorMessage("Could not get token: \(error!)")
                     return
                 }
-                print("MCD token: \(accessToken)")
+                
                 eventArgs.request.complete(withAccessToken: accessToken)
             })
         }
@@ -142,6 +140,9 @@ class NotificationManager {
 
             print("Received \(userNotifications.count) notifications")
 
+            // Since the app is only using visual notifications, no need
+            // to store or process internally.
+            /*
             userNotifications.forEach({
                 (notification: MCDUserNotification) in
                 // Check current notifications for a match
@@ -158,23 +159,25 @@ class NotificationManager {
 
                     if (notification.userActionState == MCDUserNotificationUserActionState.noInteraction) &&
                         (notification.readState == MCDUserNotificationReadState.unread) {
+                        self.dismissNotification(notification: notification)
                         // Create notification
-                        self.postNotification(notification: notification)
+                        //self.postNotification(notification: notification)
                     } else {
                         // Dismiss notification
-                        self.dismissNotification(notificationId: notification.notificationId)
+                        self.dismissNotificationFromTray(withId: notification.notificationId)
                     }
                 } else {
                     print("Notification \(notification.notificationId) is deleted")
                     // Dismiss notification
-                    self.dismissNotification(notificationId: notification.notificationId)
+                    self.dismissNotificationFromTray(withId: notification.notificationId)
                 }
-            })
+            })*/
         })
     }
 
     // Display a notification on the device
     private func postNotification(notification: MCDUserNotification) {
+        print("POST NOTIFICATION------------------------")
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "Flight Schedule"
         notificationContent.body = notification.content
@@ -192,11 +195,30 @@ class NotificationManager {
             }
         })
     }
-
-    private func dismissNotification(notificationId: String) {
-        print("Dismissing notification")
+    
+    public func dismissNotification(withId notificationId: String) {
+        currentNotifications.forEach {
+            (notification: MCDUserNotification) in
+            if notification.notificationId == notificationId {
+                dismissNotification(notification: notification)
+            }
+        }
+    }
+    
+    private func dismissNotificationFromTray(withId notificationId: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [notificationId])
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [notificationId])
+    }
+
+    private func dismissNotification(notification: MCDUserNotification) {
+        print("DISMISS NOTIFICATION----------------------------")
+        dismissNotificationFromTray(withId: notification.notificationId)
+        notification.userActionState = .dismissed
+        notification.readState = .read
+        notification.saveAsync {
+            (result: MCDUserNotificationUpdateResult?, error: Error?) in
+            print("Dismiss notification result: \(String(describing: result)), error: \(String(describing: error))")
+        }
     }
 
     private func refresh() {
