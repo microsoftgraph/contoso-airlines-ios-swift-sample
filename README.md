@@ -42,5 +42,5 @@ Register an app in the Azure portal named **Flight Team iOS App**.
   - **Notifications.Send**
 - After adding the permissions, use the **Grant admin consent for Contoso** button
 - Rename the **./FlightSchedule/Config/AppConfig.swift.example** file to **AppConfig.swift** and set the values for `appId`, `tenantId`, and `notificationDomain`.
-- Edit the **./FlightSchedule/Info.plist** file and repalce the `YOUR_APP_ID_HERE` value with your app ID.
+- Edit the **./FlightSchedule/Info.plist** file and replace the `YOUR_APP_ID_HERE` value with your app ID.
 - Add the application ID in the **Support Microsoft Account & Azure Active Directory** section of your cross-device experience registration in the Windows Dev Center.
