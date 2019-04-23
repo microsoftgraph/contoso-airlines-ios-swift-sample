@@ -27,7 +27,7 @@
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>msalaa4eb44c-108d-4c32-ac25-01c3a54f7761</string>
+				<string>msalYOUR_APP_ID_HERE</string>
 			</array>
 		</dict>
 	</array>
