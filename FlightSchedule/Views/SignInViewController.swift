@@ -29,7 +29,9 @@ class SignInViewController: UIViewController {
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.registerForPushNotifications()
-            appDelegate.showMainView()
+            DispatchQueue.main.async {
+                appDelegate.showMainView()
+            }
         }
     }
 }

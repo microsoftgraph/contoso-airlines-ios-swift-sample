@@ -74,7 +74,9 @@ class MainViewController: UIViewController {
         AuthenticationManager.instance.signOutAccounts()
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.showSignInView()
+        DispatchQueue.main.async {
+            appDelegate.showSignInView()
+        }
     }
     
     @IBAction func refreshFlights() {
