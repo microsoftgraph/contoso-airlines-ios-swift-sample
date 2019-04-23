@@ -22,4 +22,12 @@ struct AppConfig {
     // The verified domain configured for your Cross-Device Experiences
     // notifications (Project Rome)
     static let notificationDomain = "YOUR_CROSS_DEVICE_DOMAIN_HERE"
+
+    // The notification scope exposed by the Flight Team Notification Service
+    static let notificationScopes = [
+        "api://c23134f5-9d30-495e-acab-0099f4a761a1/Notifications.Send"
+    ]
+
+    // The hostname for the Azure Function hosting the ConnectGraphNotifications function
+    static let notificationApiEndpoint = "https://c31c9fa0.ngrok.io"
 }

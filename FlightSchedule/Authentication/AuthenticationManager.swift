@@ -70,7 +70,14 @@ class AuthenticationManager {
                 return
             }
 
-            completion(tokenResult.account, tokenResult.accessToken, nil)
+            self.authenticateNotificationService(completion: {
+                (error: Error?) in
+                if error != nil {
+                    print("Error connecting user to Graph notification service: \(String(describing: error))")
+                }
+                
+                completion(tokenResult.account, tokenResult.accessToken, nil)
+            })
         })
     }
 
@@ -115,6 +122,42 @@ class AuthenticationManager {
         } else {
             print("No accounts in cache")
             completion(nil, NSError(domain: "AuthenticationManager", code: MSALErrorCode.accountRequired.rawValue, userInfo: nil))
+        }
+    }
+    
+    public func authenticateNotificationService(completion: @escaping(Error?) -> Void) {
+        // First attempt to get token silently
+        var firstAccount: MSALAccount?
+        do {
+            firstAccount = try publicClient?.allAccounts().first
+        } catch {
+            print("Error getting account: \(error)")
+        }
+        
+        if (firstAccount != nil) {
+            // Try getting token silently
+            publicClient?.acquireTokenSilent(forScopes: AppConfig.notificationScopes, account: firstAccount!, completionBlock: {
+                (result: MSALResult?, error: Error?) in
+                guard let authResult = result, error == nil else {
+                    print("Error getting token silently: \(error!)")
+                    completion(error)
+                    return
+                }
+                
+                print("Access token for notifications obtained silently: \(authResult.accessToken)")
+                
+                let url = URL(string: "\(AppConfig.notificationApiEndpoint)/api/ConnectGraphNotifications")!
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.setValue("Bearer \(authResult.accessToken)", forHTTPHeaderField: "Authorization")
+                
+                let task = URLSession.shared.dataTask(with: request)
+                task.resume()
+                completion(nil)
+            })
+        } else {
+            print("No accounts in cache")
+            completion(NSError(domain: "AuthenticationManager", code: MSALErrorCode.accountRequired.rawValue, userInfo: nil))
         }
     }
     
