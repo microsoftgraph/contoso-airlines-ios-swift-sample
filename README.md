@@ -1,5 +1,11 @@
 # Contoso Airlines iOS App
 
+WORK IN PROGRESS
+
+## Prerequisites
+
+Minimally, you'll need XCode to compile and run this sample, along with a physical iOS device to debug the application. In order to enable the Graph notifications portion of the demo, you'll also need to setup the [Contoso Airlines Flight Team Provisioning Sample](https://github.com/microsoftgraph/contoso-airlines-azure-functions-sample), including the optional configuration to enable Graph notifications.
+
 ## Setup
 
 ### Add Project Rome service principals to your tenant
@@ -44,3 +50,7 @@ Register an app in the Azure portal named **Flight Team iOS App**.
 - Rename the **./FlightSchedule/Config/AppConfig.swift.example** file to **AppConfig.swift** and set the values for `appId`, `tenantId`, and `notificationDomain`.
 - Edit the **./FlightSchedule/Info.plist** file and replace the `YOUR_APP_ID_HERE` value with your app ID.
 - Add the application ID in the **Support Microsoft Account & Azure Active Directory** section of your cross-device experience registration in the Windows Dev Center.
+
+### Triggering a notification
+
+Assuming you have the [Contoso Airlines Flight Team Provisioning Sample](https://github.com/microsoftgraph/contoso-airlines-azure-functions-sample) deployed and working, you can trigger a notification to this app if you are signed in as a user that is a member of an existing flight team. Using your flight administrator account, modify the flight in the SharePoint list to update either the departure gate or departure time.
