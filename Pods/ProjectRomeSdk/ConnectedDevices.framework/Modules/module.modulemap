@@ -1,0 +1,6 @@
+framework module ConnectedDevices {
+  umbrella header "ConnectedDevices-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,11 @@
+framework module ProjectRomeTokens {
+  umbrella header "ProjectRomeTokens.h"
+
+  export *
+  module * { export * }
+}
+
+module ProjectRomeTokens.Swift {
+    header "ProjectRomeTokens-Swift.h"
+    requires objc
+}

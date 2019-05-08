@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		962086252238029000D8A821 /* CrewPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086242238028F00D8A821 /* CrewPhotosViewController.swift */; };
+		962086272238225A00D8A821 /* NextFlightCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086262238225A00D8A821 /* NextFlightCardView.swift */; };
+		962086292238343D00D8A821 /* FlightScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962086282238343D00D8A821 /* FlightScheduleViewController.swift */; };
+		9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */; };
+		963D5E7D2232F8CC003BA02C /* GraphManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E7C2232F8CC003BA02C /* GraphManager.swift */; };
+		963D5E8822331F55003BA02C /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E8722331F55003BA02C /* SpinnerViewController.swift */; };
+		963D5E912236BB68003BA02C /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E902236BB68003BA02C /* AppConfig.swift */; };
+		963D5E932236C44C003BA02C /* ProfilePhotoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E922236C44C003BA02C /* ProfilePhotoUtil.swift */; };
+		963D5E952237E399003BA02C /* CrewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D5E942237E399003BA02C /* CrewPhotoCollectionViewCell.swift */; };
+		965B15E9222ED16B006F398D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965B15E8222ED16B006F398D /* AppDelegate.swift */; };
+		965B15EB222ED16B006F398D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965B15EA222ED16B006F398D /* SignInViewController.swift */; };
+		965B15EE222ED16B006F398D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965B15EC222ED16B006F398D /* Main.storyboard */; };
+		965B15F0222ED17E006F398D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 965B15EF222ED17E006F398D /* Assets.xcassets */; };
+		965B15F3222ED17F006F398D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 965B15F1222ED17F006F398D /* LaunchScreen.storyboard */; };
+		968F5112224BDEB4002FBB30 /* CrewListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F5111224BDEB4002FBB30 /* CrewListTableViewController.swift */; };
+		968F5114224BE018002FBB30 /* CrewListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F5113224BE018002FBB30 /* CrewListViewCell.swift */; };
+		968F511A224BE5D1002FBB30 /* ProjectRomeTokens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */; };
+		968F511B224BE5D1002FBB30 /* ProjectRomeTokens.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		968F511E224BE5DE002FBB30 /* ADAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968F511D224BE5DE002FBB30 /* ADAL.framework */; };
+		968F511F224BE5DE002FBB30 /* ADAL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 968F511D224BE5DE002FBB30 /* ADAL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		96B1706D224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B1706C224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift */; };
+		96B1706F224E7B1100F61434 /* FlightDataEventExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B1706E224E7B1100F61434 /* FlightDataEventExtension.swift */; };
+		96E301CE2230004A00744ABF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CD2230004A00744ABF /* NotificationManager.swift */; };
+		96E301D02230372D00744ABF /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301CF2230372D00744ABF /* AuthenticationManager.swift */; };
+		96E301D522304C4E00744ABF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E301D422304C4E00744ABF /* MainViewController.swift */; };
+		96EE3C28224AA83500BE01D3 /* FlightDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EE3C27224AA83500BE01D3 /* FlightDetailViewController.swift */; };
+		C21EC19922059BB07BFF65F6 /* Pods_FlightSchedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8A615F090F053778B5A7B5 /* Pods_FlightSchedule.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		968F511C224BE5D1002FBB30 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				968F511F224BE5DE002FBB30 /* ADAL.framework in Embed Frameworks */,
+				968F511B224BE5D1002FBB30 /* ProjectRomeTokens.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0C519944915FF3EBBE0BF988 /* Pods-FlightSchedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightSchedule.release.xcconfig"; path = "Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule.release.xcconfig"; sourceTree = "<group>"; };
+		5E8A615F090F053778B5A7B5 /* Pods_FlightSchedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightSchedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		962086242238028F00D8A821 /* CrewPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPhotosViewController.swift; sourceTree = "<group>"; };
+		962086262238225A00D8A821 /* NextFlightCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextFlightCardView.swift; sourceTree = "<group>"; };
+		962086282238343D00D8A821 /* FlightScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightScheduleViewController.swift; sourceTree = "<group>"; };
+		9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightScheduleViewCell.swift; sourceTree = "<group>"; };
+		963D5E7C2232F8CC003BA02C /* GraphManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphManager.swift; sourceTree = "<group>"; };
+		963D5E8722331F55003BA02C /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		963D5E902236BB68003BA02C /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		963D5E922236C44C003BA02C /* ProfilePhotoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoUtil.swift; sourceTree = "<group>"; };
+		963D5E942237E399003BA02C /* CrewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		965B15E5222ED16B006F398D /* FlightSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		965B15E8222ED16B006F398D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		965B15EA222ED16B006F398D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		965B15ED222ED16B006F398D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		965B15EF222ED17E006F398D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		965B15F2222ED17F006F398D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		965B15F4222ED17F006F398D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		965B15FA222ED517006F398D /* FlightSchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlightSchedule.entitlements; sourceTree = "<group>"; };
+		968F5111224BDEB4002FBB30 /* CrewListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewListTableViewController.swift; sourceTree = "<group>"; };
+		968F5113224BE018002FBB30 /* CrewListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewListViewCell.swift; sourceTree = "<group>"; };
+		968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProjectRomeTokens.framework; sourceTree = "<group>"; };
+		968F511D224BE5DE002FBB30 /* ADAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ADAL.framework; sourceTree = "<group>"; };
+		96B1706C224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFromMSGraphDateTimeTimeZone.swift; sourceTree = "<group>"; };
+		96B1706E224E7B1100F61434 /* FlightDataEventExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlightDataEventExtension.swift; path = FlightSchedule/Graph/FlightDataEventExtension.swift; sourceTree = SOURCE_ROOT; };
+		96E301CD2230004A00744ABF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		96E301CF2230372D00744ABF /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		96E301D422304C4E00744ABF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		96EE3C27224AA83500BE01D3 /* FlightDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailViewController.swift; sourceTree = "<group>"; };
+		B77DAAE761D362AA986C7A46 /* Pods-FlightSchedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightSchedule.debug.xcconfig"; path = "Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		965B15E2222ED16B006F398D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C21EC19922059BB07BFF65F6 /* Pods_FlightSchedule.framework in Frameworks */,
+				968F511E224BE5DE002FBB30 /* ADAL.framework in Frameworks */,
+				968F511A224BE5D1002FBB30 /* ProjectRomeTokens.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		963D5E8022331732003BA02C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				96B1706E224E7B1100F61434 /* FlightDataEventExtension.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		963D5E8322331E71003BA02C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96E301D422304C4E00744ABF /* MainViewController.swift */,
+				965B15EA222ED16B006F398D /* SignInViewController.swift */,
+				963D5E8722331F55003BA02C /* SpinnerViewController.swift */,
+				963D5E942237E399003BA02C /* CrewPhotoCollectionViewCell.swift */,
+				962086242238028F00D8A821 /* CrewPhotosViewController.swift */,
+				962086262238225A00D8A821 /* NextFlightCardView.swift */,
+				962086282238343D00D8A821 /* FlightScheduleViewController.swift */,
+				9620862A22383B4E00D8A821 /* FlightScheduleViewCell.swift */,
+				96EE3C27224AA83500BE01D3 /* FlightDetailViewController.swift */,
+				968F5111224BDEB4002FBB30 /* CrewListTableViewController.swift */,
+				968F5113224BE018002FBB30 /* CrewListViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		963D5E8422331E8C003BA02C /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				96E301CD2230004A00744ABF /* NotificationManager.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		963D5E8522331E9C003BA02C /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				96E301CF2230372D00744ABF /* AuthenticationManager.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		963D5E8622331EA9003BA02C /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				963D5E7C2232F8CC003BA02C /* GraphManager.swift */,
+				963D5E922236C44C003BA02C /* ProfilePhotoUtil.swift */,
+				96B1706C224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
+		963D5E8E2236B2DC003BA02C /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				963D5E902236BB68003BA02C /* AppConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		965B15DC222ED16B006F398D = {
+			isa = PBXGroup;
+			children = (
+				968F511D224BE5DE002FBB30 /* ADAL.framework */,
+				968F5119224BE5D0002FBB30 /* ProjectRomeTokens.framework */,
+				965B15E7222ED16B006F398D /* FlightSchedule */,
+				965B15E6222ED16B006F398D /* Products */,
+				DC7DEE6A1E265862E195550D /* Pods */,
+				D5DF3EFA114802778719F028 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		965B15E6222ED16B006F398D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				965B15E5222ED16B006F398D /* FlightSchedule.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		965B15E7222ED16B006F398D /* FlightSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				963D5E8E2236B2DC003BA02C /* Config */,
+				963D5E8622331EA9003BA02C /* Graph */,
+				963D5E8522331E9C003BA02C /* Authentication */,
+				963D5E8422331E8C003BA02C /* Notifications */,
+				963D5E8322331E71003BA02C /* Views */,
+				963D5E8022331732003BA02C /* Models */,
+				965B15FA222ED517006F398D /* FlightSchedule.entitlements */,
+				965B15E8222ED16B006F398D /* AppDelegate.swift */,
+				965B15EC222ED16B006F398D /* Main.storyboard */,
+				965B15EF222ED17E006F398D /* Assets.xcassets */,
+				965B15F1222ED17F006F398D /* LaunchScreen.storyboard */,
+				965B15F4222ED17F006F398D /* Info.plist */,
+			);
+			path = FlightSchedule;
+			sourceTree = "<group>";
+		};
+		D5DF3EFA114802778719F028 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E8A615F090F053778B5A7B5 /* Pods_FlightSchedule.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC7DEE6A1E265862E195550D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B77DAAE761D362AA986C7A46 /* Pods-FlightSchedule.debug.xcconfig */,
+				0C519944915FF3EBBE0BF988 /* Pods-FlightSchedule.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		965B15E4222ED16B006F398D /* FlightSchedule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 965B15F7222ED17F006F398D /* Build configuration list for PBXNativeTarget "FlightSchedule" */;
+			buildPhases = (
+				8456D9FB25AC6A62A0CC1A52 /* [CP] Check Pods Manifest.lock */,
+				965B15E1222ED16B006F398D /* Sources */,
+				965B15E2222ED16B006F398D /* Frameworks */,
+				965B15E3222ED16B006F398D /* Resources */,
+				23594F1887BFBF9639098AF9 /* [CP] Embed Pods Frameworks */,
+				968F511C224BE5D1002FBB30 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlightSchedule;
+			productName = FlightSchedule;
+			productReference = 965B15E5222ED16B006F398D /* FlightSchedule.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		965B15DD222ED16B006F398D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Jason Johnston";
+				TargetAttributes = {
+					965B15E4222ED16B006F398D = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 965B15E0222ED16B006F398D /* Build configuration list for PBXProject "FlightSchedule" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 965B15DC222ED16B006F398D;
+			productRefGroup = 965B15E6222ED16B006F398D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				965B15E4222ED16B006F398D /* FlightSchedule */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		965B15E3222ED16B006F398D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				965B15F3222ED17F006F398D /* LaunchScreen.storyboard in Resources */,
+				965B15F0222ED17E006F398D /* Assets.xcassets in Resources */,
+				965B15EE222ED16B006F398D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23594F1887BFBF9639098AF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MSAL/MSAL.framework",
+				"${BUILT_PRODUCTS_DIR}/MSGraphClientModels/MSGraphClientModels.framework",
+				"${BUILT_PRODUCTS_DIR}/MSGraphClientSDK/MSGraphClientSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/MSGraphMSALAuthProvider/MSGraphMSALAuthProvider.framework",
+				"${PODS_ROOT}/ProjectRomeSdk/ConnectedDevices.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSAL.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphClientModels.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphClientSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MSGraphMSALAuthProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ConnectedDevices.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlightSchedule/Pods-FlightSchedule-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8456D9FB25AC6A62A0CC1A52 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlightSchedule-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		965B15E1222ED16B006F398D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				963D5E7D2232F8CC003BA02C /* GraphManager.swift in Sources */,
+				96E301CE2230004A00744ABF /* NotificationManager.swift in Sources */,
+				96EE3C28224AA83500BE01D3 /* FlightDetailViewController.swift in Sources */,
+				962086252238029000D8A821 /* CrewPhotosViewController.swift in Sources */,
+				96B1706D224D339B00F61434 /* DateFromMSGraphDateTimeTimeZone.swift in Sources */,
+				962086292238343D00D8A821 /* FlightScheduleViewController.swift in Sources */,
+				963D5E912236BB68003BA02C /* AppConfig.swift in Sources */,
+				96E301D02230372D00744ABF /* AuthenticationManager.swift in Sources */,
+				965B15EB222ED16B006F398D /* SignInViewController.swift in Sources */,
+				968F5114224BE018002FBB30 /* CrewListViewCell.swift in Sources */,
+				963D5E932236C44C003BA02C /* ProfilePhotoUtil.swift in Sources */,
+				965B15E9222ED16B006F398D /* AppDelegate.swift in Sources */,
+				96E301D522304C4E00744ABF /* MainViewController.swift in Sources */,
+				968F5112224BDEB4002FBB30 /* CrewListTableViewController.swift in Sources */,
+				963D5E8822331F55003BA02C /* SpinnerViewController.swift in Sources */,
+				96B1706F224E7B1100F61434 /* FlightDataEventExtension.swift in Sources */,
+				963D5E952237E399003BA02C /* CrewPhotoCollectionViewCell.swift in Sources */,
+				9620862B22383B4E00D8A821 /* FlightScheduleViewCell.swift in Sources */,
+				962086272238225A00D8A821 /* NextFlightCardView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		965B15EC222ED16B006F398D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				965B15ED222ED16B006F398D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		965B15F1222ED17F006F398D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				965B15F2222ED17F006F398D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		965B15F5222ED17F006F398D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		965B15F6222ED17F006F398D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		965B15F8222ED17F006F398D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B77DAAE761D362AA986C7A46 /* Pods-FlightSchedule.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FlightSchedule/FlightSchedule.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 627WDN8ZS4;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = "${inherited}";
+				INFOPLIST_FILE = FlightSchedule/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.contoso.FlightSchedule;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "FlightSchedule Distribution";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		965B15F9222ED17F006F398D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C519944915FF3EBBE0BF988 /* Pods-FlightSchedule.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FlightSchedule/FlightSchedule.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 627WDN8ZS4;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"${inherited}",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = "${inherited}";
+				INFOPLIST_FILE = FlightSchedule/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.contoso.FlightSchedule;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "FlightSchedule Distribution";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		965B15E0222ED16B006F398D /* Build configuration list for PBXProject "FlightSchedule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				965B15F5222ED17F006F398D /* Debug */,
+				965B15F6222ED17F006F398D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		965B15F7222ED17F006F398D /* Build configuration list for PBXNativeTarget "FlightSchedule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				965B15F8222ED17F006F398D /* Debug */,
+				965B15F9222ED17F006F398D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 965B15DD222ED16B006F398D /* Project object */;
+}
