@@ -1,6 +1,8 @@
 # Contoso Airlines iOS App
 
-WORK IN PROGRESS
+## IMPORTANT
+
+**This sample has been archived and is no longer being maintained. For a more current sample using Microsoft Graph from Swift, please see https://github.com/microsoftgraph/msgraph-training-ios-swift.**
 
 ## Prerequisites
 
